@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { Logo } from './Logo';
 
 const navItems = [
   {
@@ -25,17 +27,22 @@ const navItems = [
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === '/solutions') return pathname.startsWith('/solutions');
+    return pathname === href;
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-navy/90 backdrop-blur-xl border-b border-brand-border/50">
       <div className="section-container">
         <div className="flex items-center justify-between h-16 lg:h-18">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-display font-bold tracking-tight">
-              <span className="text-brand-amber">tvam</span>
-              <span className="text-white">eva</span>
-            </span>
+          <Link href="/" className="flex items-center">
+            <
+              Logo className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -48,7 +55,7 @@ export function Navbar() {
                   onMouseEnter={() => setDropdownOpen(true)}
                   onMouseLeave={() => setDropdownOpen(false)}
                 >
-                  <button className="nav-link flex items-center gap-1">
+                  <button className={isActive(item.href) ? 'nav-link-active flex items-center gap-1' : 'nav-link flex items-center gap-1'}>
                     {item.label}
                     <ChevronDown className="w-3.5 h-3.5" />
                   </button>
@@ -60,7 +67,7 @@ export function Navbar() {
                           href={child.href}
                           className="flex items-center justify-between px-4 py-3 rounded-lg transition-colors hover:bg-brand-navy-surface group"
                         >
-                          <span className="text-sm font-display text-white group-hover:text-brand-amber transition-colors">
+                          <span className={`text-sm font-display group-hover:text-brand-amber transition-colors ${pathname === child.href ? 'text-brand-amber' : 'text-white'}`}>
                             {child.label}
                           </span>
                           <span className="text-xs font-mono text-brand-gray-400">
@@ -72,7 +79,7 @@ export function Navbar() {
                   )}
                 </div>
               ) : (
-                <Link key={item.href} href={item.href} className="nav-link">
+                <Link key={item.href} href={item.href} className={isActive(item.href) ? 'nav-link-active' : 'nav-link'}>
                   {item.label}
                 </Link>
               )
@@ -81,7 +88,7 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link href="/contact" className="nav-link">
+            <Link href="/contact" className={isActive('/contact') ? 'nav-link-active' : 'nav-link'}>
               Contact
             </Link>
             <Link href="/advisory" className="btn-primary text-sm px-5 py-2.5">
@@ -107,7 +114,7 @@ export function Navbar() {
               <div key={item.label}>
                 <Link
                   href={item.href}
-                  className="block py-2 text-white font-display"
+                  className={`block py-2 font-display ${isActive(item.href) ? 'text-brand-amber' : 'text-white'}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -118,7 +125,7 @@ export function Navbar() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block py-1.5 text-sm text-brand-gray-300 hover:text-brand-amber"
+                        className={`block py-1.5 text-sm ${pathname === child.href ? 'text-brand-amber' : 'text-brand-gray-300 hover:text-brand-amber'}`}
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}

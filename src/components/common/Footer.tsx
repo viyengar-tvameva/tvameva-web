@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Logo } from './Logo';
 
 const footerLinks = {
   solutions: [
@@ -34,7 +33,11 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
             <Link href="/" className="inline-block">
-              <Logo className="h-7 w-auto" />
+              <img
+                src="/logo-dark-bg.png"
+                alt="tvameva.ai"
+                className="h-7 w-auto"
+              />
             </Link>
             <p className="mt-4 text-sm text-brand-gray-400 leading-relaxed max-w-xs">
               AI-native solutions provider. Five solution areas. Dedicated pods.
