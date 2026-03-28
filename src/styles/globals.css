@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --color-navy: #0d1117;
+    --color-navy-light: #161b22;
+    --color-navy-card: #1c2333;
+    --color-navy-surface: #232b3e;
+    --color-amber: #f5a623;
+    --color-amber-light: #ffc857;
+    --color-teal: #2ed8a3;
+    --color-orange: #e8593c;
+    --color-border: #2a3250;
+    --color-border-light: #3a4568;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #b0b8c9;
+    --color-text-muted: #6b7280;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-navy text-white font-body antialiased;
+  }
+
+  ::selection {
+    background: rgba(245, 166, 35, 0.3);
+    color: white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           bg-brand-amber text-brand-navy font-display font-semibold 
+           rounded-button text-sm tracking-wide
+           transition-all duration-300 ease-out
+           hover:bg-brand-amber-light hover:shadow-lg hover:shadow-brand-amber/20
+           active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           border border-brand-border-light text-white font-display font-medium 
+           rounded-button text-sm tracking-wide
+           transition-all duration-300 ease-out
+           hover:border-brand-amber hover:text-brand-amber
+           active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-brand-amber font-display font-medium 
+           text-sm tracking-wide
+           transition-all duration-300 ease-out
+           hover:gap-3;
+  }
+
+  .card {
+    @apply bg-brand-navy-card border border-brand-border rounded-card 
+           p-6 transition-all duration-300 ease-out
+           hover:border-brand-border-light hover:translate-y-[-2px]
+           hover:shadow-lg hover:shadow-black/20;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer
+           hover:border-brand-amber/30 hover:shadow-brand-amber/5;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-section;
+  }
+
+  .section-padding-sm {
+    @apply py-section-sm;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-amber to-brand-orange;
+  }
+
+  .gradient-text-teal {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-teal to-blue-400;
+  }
+
+  .platform-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 
+           bg-brand-navy-surface border border-brand-border 
+           rounded-full text-xs font-mono text-brand-gray-300
+           tracking-wide uppercase;
+  }
+
+  .stat-number {
+    @apply text-4xl lg:text-5xl font-display font-bold text-brand-amber;
+  }
+
+  .stat-label {
+    @apply text-sm text-brand-gray-300 mt-1;
+  }
+
+  .divider-gradient {
+    @apply h-px bg-gradient-to-r from-transparent via-brand-border-light to-transparent;
+  }
+
+  .glow-amber {
+    @apply absolute inset-0 bg-glow-amber pointer-events-none;
+  }
+
+  .glow-teal {
+    @apply absolute inset-0 bg-glow-teal pointer-events-none;
+  }
+
+  .nav-link {
+    @apply text-sm font-display text-brand-gray-300 
+           transition-colors duration-200
+           hover:text-white;
+  }
+
+  .nav-link-active {
+    @apply text-sm font-display text-brand-amber;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-stagger-1 { animation-delay: 0.1s; }
+  .animate-stagger-2 { animation-delay: 0.2s; }
+  .animate-stagger-3 { animation-delay: 0.3s; }
+  .animate-stagger-4 { animation-delay: 0.4s; }
+  .animate-stagger-5 { animation-delay: 0.5s; }
+}
