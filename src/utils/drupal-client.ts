@@ -210,11 +210,11 @@ class DrupalClient {
   async getSolutionAreas(): Promise<SolutionArea[] | null> {
     if (!USE_CMS) return null;
     try {
-      const response = await this.fetch<DrupalResource[]>('node/solution_area', {
-        'sort': 'field_sa_priority',
-      });
-      const data = Array.isArray(response.data) ? response.data : [response.data];
-      return data.map(mapDrupalToSolutionArea);
+     const response = await this.fetch<DrupalResource>('node/solution_area', {
+  'sort': 'field_sa_priority',
+});
+const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
+return data.map(mapDrupalToSolutionArea);
     } catch (error) {
       console.error('Failed to fetch solution areas from CMS:', error);
       return null;
@@ -224,10 +224,10 @@ class DrupalClient {
   async getSolutionBySlug(slug: string): Promise<SolutionArea | null> {
     if (!USE_CMS) return null;
     try {
-      const response = await this.fetch<DrupalResource[]>('node/solution_area', {
+      const response = await this.fetch<DrupalResource>('node/solution_area', {
         'filter[field_slug]': slug,
       });
-      const data = Array.isArray(response.data) ? response.data : [response.data];
+      const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
       if (data.length === 0) return null;
       return mapDrupalToSolutionArea(data[0]);
     } catch (error) {
