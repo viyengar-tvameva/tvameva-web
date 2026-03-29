@@ -50,10 +50,34 @@ export default function AIMaturityAssessment() {
 
   const allAnswered = Object.keys(answers).length === totalQuestions;
 
-  const handleSubmitGate = (e: React.FormEvent) => {
+  const handleSubmitGate = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would submit to Drupal/CRM
-    console.log('Lead captured:', { ...leadInfo, scores: answers, totalScore: getTotalScore() });
+    const totalScore = getTotalScore();
+    const maturity = getMaturityLevel(totalScore);
+    try {
+      await fetch('http://34.56.251.119/webform_rest/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          webform_id: 'ai_maturity_assessment',
+          first_name: leadInfo.firstName,
+          last_name: leadInfo.lastName,
+          email: leadInfo.email,
+          company: leadInfo.company,
+          title_role: leadInfo.title,
+          company_revenue: leadInfo.companySize,
+          total_score: totalScore,
+          maturity_level: maturity.label,
+          dimension_strategy: getDimensionScore('strategy'),
+          dimension_data: getDimensionScore('data'),
+          dimension_technology: getDimensionScore('technology'),
+          dimension_people: getDimensionScore('people'),
+          dimension_process: getDimensionScore('process'),
+        }),
+      });
+    } catch (error) {
+      console.error('Assessment submission error:', error);
+    }
     setStep('results');
   };
 
@@ -278,10 +302,10 @@ export default function AIMaturityAssessment() {
                     className="w-full px-4 py-2.5 bg-brand-navy-surface border border-brand-border rounded-button text-sm text-white focus:border-brand-amber focus:outline-none transition-colors"
                   >
                     <option value="">Select range</option>
-                    <option value="under-100m">Under $100M</option>
-                    <option value="100m-500m">$100M – $500M</option>
-                    <option value="500m-1b">$500M – $1B</option>
-                    <option value="over-1b">Over $1B</option>
+                    <option value="under_100m">Under $100M</option>
+                    <option value="100m_500m">$100M – $500M</option>
+                    <option value="500m_1b">$500M – $1B</option>
+                    <option value="over_1b">Over $1B</option>
                   </select>
                 </div>
 
@@ -337,7 +361,7 @@ export default function AIMaturityAssessment() {
                       </h2>
                       {dimensions.map((dim) => {
                         const score = getDimensionScore(dim.id);
-                        const maxScore = 12; // 3 questions × 4 max
+                        const maxScore = 12;
                         const pct = (score / maxScore) * 100;
                         return (
                           <div key={dim.id} className="card p-4">

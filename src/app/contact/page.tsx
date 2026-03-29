@@ -9,10 +9,29 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Contact form:', form);
-    setSubmitted(true);
+    try {
+      const response = await fetch('http://34.56.251.119/webform_rest/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          webform_id: 'contact_inquiry',
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          message: form.message,
+        }),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -23,7 +42,7 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-gradient-brand" />
           <div className="relative section-container">
             <h1 className="text-hero-md font-display font-bold text-white max-w-2xl">
-              Let's talk about what AI can do for your platforms.
+              Let&apos;s talk about what AI can do for your platforms.
             </h1>
             <p className="mt-4 text-lg text-brand-gray-300 max-w-xl">
               Before we propose a solution, we need to understand where you are today.
@@ -47,7 +66,7 @@ export default function ContactPage() {
                       Thank you
                     </h3>
                     <p className="text-sm text-brand-gray-300">
-                      We'll be in touch within one business day.
+                      We&apos;ll be in touch within one business day.
                     </p>
                   </div>
                 ) : (
@@ -135,7 +154,6 @@ export default function ContactPage() {
                     ))}
                   </div>
                   <p className="text-xs text-brand-gray-500 mb-4">$25,000–$50,000 per assessment</p>
-                  {/* Calendly embed placeholder — replace with actual Calendly URL */}
                   <a
                     href="https://calendly.com/tvameva"
                     target="_blank"

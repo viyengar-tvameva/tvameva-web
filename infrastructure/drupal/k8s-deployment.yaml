@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal
+  namespace: drupal
+  labels:
+    app: drupal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drupal
+  template:
+    metadata:
+      labels:
+        app: drupal
+    spec:
+      containers:
+      - name: drupal
+        image: us-central1-docker.pkg.dev/tvameva-website/tvameva-images/tvameva-drupal:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: "1"
+            memory: 1Gi
+        env:
+        - name: DRUPAL_DB_HOST
+          value: "34.134.209.31"
+        - name: DRUPAL_DB_PORT
+          value: "3306"
+        - name: DRUPAL_DB_NAME
+          value: "drupal"
+        - name: DRUPAL_DB_USER
+          value: "drupal"
+        - name: DRUPAL_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: drupal-secrets
+              key: db-password
+        volumeMounts:
+        - name: drupal-files
+          mountPath: /var/www/html/sites/default/files
+        - name: drupal-modules
+          mountPath: /var/www/html/modules/custom
+        - name: drupal-settings
+          mountPath: /opt/drupal/web/sites/default/settings.php
+          subPath: settings.php
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /user/login
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /user/login
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+      volumes:
+      - name: drupal-files
+        persistentVolumeClaim:
+          claimName: drupal-files-pvc
+      - name: drupal-modules
+        persistentVolumeClaim:
+          claimName: drupal-modules-pvc
+      - name: drupal-settings
+        configMap:
+          name: drupal-settings
+      tolerations:
+      - key: kubernetes.io/arch
+        value: amd64
+        effect: NoSchedule

@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+
+// Existing components (used for non-enriched SAs)
 import { SolutionHero } from '@/components/sections/solution/SolutionHero';
 import { SolutionCapabilities } from '@/components/sections/solution/SolutionCapabilities';
 import { SolutionIP } from '@/components/sections/solution/SolutionIP';
@@ -9,10 +11,35 @@ import { SolutionMetrics } from '@/components/sections/solution/SolutionMetrics'
 import { SolutionMarket } from '@/components/sections/solution/SolutionMarket';
 import { SolutionExpansion } from '@/components/sections/solution/SolutionExpansion';
 import { SolutionAdvisoryCTA } from '@/components/sections/solution/SolutionAdvisoryCTA';
-import { solutionAreas, getSolutionBySlug } from '@/data/solutions';
+
+// New enriched components
+import { SolutionChallenge } from '@/components/sections/solution/SolutionChallenge';
+import { SolutionValueDrivers } from '@/components/sections/solution/SolutionValueDrivers';
+import { SolutionPodModel } from '@/components/sections/solution/SolutionPodModel';
+import { SolutionTechStack } from '@/components/sections/solution/SolutionTechStack';
+import { SolutionProofPoints } from '@/components/sections/solution/SolutionProofPoints';
+import { SolutionMarketContext } from '@/components/sections/solution/SolutionMarketContext';
+import { SolutionExpansionPath } from '@/components/sections/solution/SolutionExpansionPath';
+import { SolutionAdvisoryExtended } from '@/components/sections/solution/SolutionAdvisoryExtended';
+
+import { solutionAreas, getSolutionBySlug, hasEnrichedContent } from '@/data/solutions';
+import drupalClient from '@/utils/drupal-client';
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
+}
+
+/**
+ * Fetch solution data: CMS first, static fallback only when CMS is off.
+ * When CMS is enabled, ALL content comes from Drupal — no static merge.
+ */
+async function getSolutionData(slug: string) {
+  // Try CMS first
+  const cmsData = await drupalClient.getSolutionBySlug(slug);
+  if (cmsData) return cmsData;
+
+  // Fallback to static when CMS is disabled or unreachable
+  return getSolutionBySlug(slug) || null;
 }
 
 export async function generateStaticParams() {
@@ -20,33 +47,50 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const sa = getSolutionBySlug(params.slug);
+  const { slug } = await params;
+  const sa = await getSolutionData(slug);
   if (!sa) return {};
   return {
-    title: `${sa.name} — ${sa.tagline}`,
-    description: sa.headline,
+    title: sa.seo?.metaTitle || `${sa.name} — ${sa.tagline}`,
+    description: sa.seo?.metaDescription || sa.headline,
     openGraph: {
-      title: `${sa.name} — ${sa.tagline} | Tvameva`,
-      description: sa.headline,
+      title: sa.seo?.metaTitle || `${sa.name} — ${sa.tagline} | Tvameva`,
+      description: sa.seo?.metaDescription || sa.headline,
     },
   };
 }
 
-export default function SolutionAreaPage({ params }: Props) {
-  const sa = getSolutionBySlug(params.slug);
+export default async function SolutionAreaPage({ params }: Props) {
+  const { slug } = await params;
+  const sa = await getSolutionData(slug);
   if (!sa) notFound();
-
+  const isEnriched = hasEnrichedContent(sa);
   return (
     <>
       <Navbar />
       <main>
         <SolutionHero solution={sa} />
-        <SolutionCapabilities solution={sa} />
-        <SolutionIP solution={sa} />
-        <SolutionMetrics solution={sa} />
-        <SolutionMarket solution={sa} />
-        <SolutionExpansion solution={sa} />
-        <SolutionAdvisoryCTA solution={sa} />
+        {isEnriched ? (
+          <>
+            <SolutionChallenge solution={sa} />
+            <SolutionValueDrivers solution={sa} />
+            <SolutionPodModel solution={sa} />
+            <SolutionTechStack solution={sa} />
+            <SolutionProofPoints solution={sa} />
+            <SolutionMarketContext solution={sa} />
+            <SolutionExpansionPath solution={sa} />
+            <SolutionAdvisoryExtended solution={sa} />
+          </>
+        ) : (
+          <>
+            <SolutionCapabilities solution={sa} />
+            <SolutionIP solution={sa} />
+            <SolutionMetrics solution={sa} />
+            <SolutionMarket solution={sa} />
+            <SolutionExpansion solution={sa} />
+            <SolutionAdvisoryCTA solution={sa} />
+          </>
+        )}
       </main>
       <Footer />
     </>
