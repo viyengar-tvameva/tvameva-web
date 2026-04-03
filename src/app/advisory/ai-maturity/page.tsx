@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { trackAssessmentStart, trackAssessmentComplete } from '@/utils/analytics';
 import { assessmentQuestions, dimensions, getMaturityLevel, type AssessmentDimension } from '@/data/assessment';
 import { ArrowRight, ArrowLeft, CheckCircle, Lock } from 'lucide-react';
 
@@ -79,6 +80,7 @@ export default function AIMaturityAssessment() {
       console.error('Assessment submission error:', error);
     }
     setStep('results');
+    trackAssessmentComplete(totalScore, maturity.label);
   };
 
   const currentQ = assessmentQuestions[currentQuestion];
@@ -116,7 +118,7 @@ export default function AIMaturityAssessment() {
               </div>
 
               <button
-                onClick={() => setStep('questions')}
+                onClick={() => { setStep('questions'); trackAssessmentStart(); }}
                 className="btn-primary mt-10 text-base px-10 py-4"
               >
                 Start Assessment

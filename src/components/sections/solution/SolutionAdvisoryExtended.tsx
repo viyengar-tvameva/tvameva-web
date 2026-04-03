@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Calendar } from 'lucide-react';
 import { Reveal, StaggerContainer, StaggerItem, GlowDivider } from '@/components/common/Animations';
+import { trackCalendlyClick, trackCTAClick } from '@/utils/analytics';
 
 export function SolutionAdvisoryExtended({ solution }: { solution: SolutionArea }) {
   if (!solution.advisoryExtended) return null;
@@ -44,6 +45,7 @@ export function SolutionAdvisoryExtended({ solution }: { solution: SolutionArea 
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-primary inline-flex"
+                            onClick={() => trackCalendlyClick(solution.slug + '_advisory_cta')}
                           >
                             Book a 30-Minute Demo
                             <ArrowRight className="ml-2 w-4 h-4" />

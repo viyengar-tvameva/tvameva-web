@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CheckCircle, Send } from 'lucide-react';
+import { trackFormSubmission } from '@/utils/analytics';
 
 export default function CareersPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -27,6 +27,7 @@ export default function CareersPage() {
       });
       if (response.ok) {
         setSubmitted(true);
+        trackFormSubmission("careers", "careers");
       } else {
         alert('Something went wrong. Please try again.');
       }

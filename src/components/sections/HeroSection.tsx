@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { HomeHeroVisual } from '@/components/visuals/HomeHeroVisual';
+import { trackCalendlyClick, trackCTAClick } from '@/utils/analytics';
 
 export function HeroSection() {
   const [showContent, setShowContent] = useState(false);
@@ -77,11 +78,12 @@ export function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-base px-8 py-4"
+            onClick={() => trackCalendlyClick('homepage')}
           >
             Book a 30-Minute Demo
             <ArrowRight className="ml-2 w-4 h-4" />
           </a>
-          <a href="#solutions" className="btn-secondary text-base px-8 py-4">
+          <a href="#solutions" className="btn-secondary text-base px-8 py-4" onClick={() => trackCTAClick('explore_solutions', 'homepage', '#solutions')}>
             Explore Solutions
           </a>
         </motion.div>

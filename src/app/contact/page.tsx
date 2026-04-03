@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { ArrowRight, Send, Calendar, CheckCircle } from 'lucide-react';
+import { trackFormSubmission } from '@/utils/analytics';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -25,6 +26,7 @@ export default function ContactPage() {
       });
       if (response.ok) {
         setSubmitted(true);
+        trackFormSubmission('contact', 'contact');
       } else {
         alert('Something went wrong. Please try again.');
       }

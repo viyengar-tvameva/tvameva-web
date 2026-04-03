@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { GradientMesh, GridPattern, PulseBadge } from '@/components/common/Animations';
 import { ArchitectureStack } from '@/components/visuals';
+import { trackCalendlyClick, trackCTAClick } from '@/utils/analytics';
 
 const diagramData: Record<string, { label: string; sub: string; color: string; bg: string }[]> = {
   engageos: [
@@ -174,12 +175,13 @@ export function SolutionHero({ solution }: { solution: SolutionArea }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={className}
+                      onClick={() => cta.href.includes('calendly') ? trackCalendlyClick(solution.slug) : trackCTAClick(cta.label, solution.slug, cta.href)}
                     >
                       {cta.label}
                       {cta.variant === 'primary' && <ArrowRight className="ml-2 w-4 h-4" />}
                     </a>
                   ) : (
-                    <Link key={i} href={cta.href} className={className}>
+                    <Link key={i} href={cta.href} className={className} onClick={() => trackCTAClick(cta.label, solution.slug, cta.href)}>
                       {cta.label}
                       {cta.variant === 'primary' && <ArrowRight className="ml-2 w-4 h-4" />}
                     </Link>
