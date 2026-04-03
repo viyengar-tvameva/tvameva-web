@@ -396,8 +396,8 @@ export const solutionAreas: SolutionArea[] = [
     },
 
     seo: {
-      metaTitle: 'EngageOS — AI-Powered Digital Experience Modernization | Tvameva',
-      metaDescription: 'Modernize your enterprise digital experience platform on Acquia and Drupal — with AI-powered search, hyper-personalization, visual commerce, and outcome-based pricing.',
+      metaTitle: 'EngageOS — Acquia Implementation Partner | Drupal DXP Modernization | Tvameva',
+      metaDescription: 'Acquia implementation partner for enterprise DXP modernization. Headless CMS consulting, AI-powered search, persona-driven personalization, and composable architecture on Drupal — delivered by AI pods.',
     },
 
     architectureDiagram: {
@@ -714,8 +714,8 @@ export const solutionAreas: SolutionArea[] = [
     },
 
     seo: {
-      metaTitle: 'InsightLens — Predictive & Prescriptive Analytics on GCP | Tvameva',
-      metaDescription: 'Build and operate predictive analytics, ML models, and executive scorecards on Google Cloud. InsightLens turns your enterprise data into decision intelligence — with outcome-based pricing.',
+      metaTitle: 'InsightLens — GCP Analytics Consulting | BigQuery & Vertex AI Implementation | Tvameva',
+      metaDescription: 'GCP analytics consulting for enterprise decision intelligence. BigQuery implementation, Vertex AI models, executive scorecards, and conversational analytics — delivered by AI pods with outcome-based pricing.',
     },
 
     architectureDiagram: {
@@ -1122,8 +1122,8 @@ export const solutionAreas: SolutionArea[] = [
     },
 
     seo: {
-      metaTitle: 'PropelEdge — AI-Native Revenue Orchestration | Tvameva',
-      metaDescription: 'Every deal touches 12 teams. None of them are in sync. PropelEdge orchestrates the entire revenue process — solution engineering, ABM, sales, delivery, partners, finance — with AI agents. Your experts focus on winning.',
+      metaTitle: 'PropelEdge — Proposal Automation Software | AI Revenue Orchestration | Tvameva',
+      metaDescription: 'AI-powered proposal automation and revenue orchestration for enterprise deal teams. Coordinate solution engineering, ABM, sales, delivery, and partners with agentic AI — from first meeting to signed SOW.',
     },
 
     architectureDiagram: {

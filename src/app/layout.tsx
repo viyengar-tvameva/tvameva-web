@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import { Analytics } from '@/components/common/Analytics';
 import { HubSpotTracking } from '@/components/common/HubSpot';
+import { OrganizationJsonLd } from './json-ld';
 
 export const metadata: Metadata = {
   title: {
@@ -11,16 +12,25 @@ export const metadata: Metadata = {
   description:
     'AI-native solutions provider. EngageOS, InsightLens, and PropelEdge — delivered by dedicated AI pods, priced on measurable outcomes.',
   keywords: [
-    'AI solutions',
-    'enterprise AI',
-    'AI pods',
+    'AI-native solutions provider',
+    'enterprise AI consulting',
+    'AI pod model',
     'outcome-based pricing',
-    'digital experience',
+    'Acquia implementation partner',
+    'Drupal DXP modernization',
+    'headless CMS consulting',
+    'GCP analytics consulting',
+    'BigQuery implementation',
+    'Vertex AI consulting',
     'decision intelligence',
+    'executive scorecards',
+    'conversational analytics',
+    'proposal automation software',
     'revenue orchestration',
-    'Algolia search',
-    'Threekit configurator',
-    'digital transformation',
+    'pre-sales automation',
+    'AI proposal generator',
+    'composable DXP',
+    'digital experience modernization',
   ],
   authors: [{ name: 'Tvameva' }],
   openGraph: {
@@ -60,6 +70,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-brand-navy text-white font-body antialiased min-h-screen">
+        <OrganizationJsonLd />
         {children}
         <Analytics />
         <HubSpotTracking />

@@ -11,8 +11,8 @@ import { AdvisoryBuildingBlocks } from '@/components/visuals/AdvisoryBuildingBlo
 const visibleSlugs = ['engageos', 'insightlens', 'propeledge'];
 
 export const metadata: Metadata = {
-  title: 'Advisory — AI Assessments & Readiness Evaluations',
-  description: 'Every AI transformation starts with knowing where you stand. 2–4 weeks to a clear-eyed assessment, prioritized roadmap, and actionable business case.',
+  title: 'Advisory — AI Maturity Assessment & Readiness Evaluations | Tvameva',
+  description: 'AI maturity assessment, DXP readiness evaluation, and data & AI readiness assessment. Clear-eyed assessment, prioritized roadmap, and actionable business case in 2-4 weeks.',
 };
 
 const assessments = [

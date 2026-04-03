@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { SolutionJsonLd } from '@/app/json-ld';
 
 // Existing components (used for non-enriched SAs)
 import { SolutionHero } from '@/components/sections/solution/SolutionHero';
@@ -70,6 +71,11 @@ export default async function SolutionAreaPage({ params }: Props) {
   const isEnriched = hasEnrichedContent(sa);
   return (
     <>
+      <SolutionJsonLd
+        name={sa.seo?.metaTitle || sa.name}
+        description={sa.seo?.metaDescription || sa.headline}
+        url={`https://tvameva.ai/solutions/${sa.slug}`}
+      />
       <Navbar />
       <main>
         <SolutionHero solution={sa} />

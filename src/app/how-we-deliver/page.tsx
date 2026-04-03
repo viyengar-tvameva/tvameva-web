@@ -8,8 +8,8 @@ import Link from 'next/link';
 import drupalClient from '@/utils/drupal-client';
 
 export const metadata: Metadata = {
-  title: 'How We Deliver — AI Pods',
-  description: 'AI agents do the work. Humans govern quality. A delivery model where specialized agents handle engineering, architecture, testing, and program management — with a small human team guiding outcomes.',
+  title: 'How We Deliver — AI Pod Delivery Model | Outcome-Based Pricing | Tvameva',
+  description: 'Dedicated AI pods with 7-8 agents and 2-3 human wizards. 60-70% lower cost than traditional SI. Outcome-based pricing tied to your results, not hours or headcount.',
 };
 
 export default async function HowWeDeliverPage() {

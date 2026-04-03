@@ -9,8 +9,8 @@ import { SuccessMetricsVisual } from '@/components/visuals/SuccessMetricsVisual'
 import { AnimatedCounter } from '@/components/common/Animations';
 
 export const metadata: Metadata = {
-  title: 'Customer Success — Business Value by Solution Area',
-  description: 'Real outcomes from AI Pod delivery across EngageOS, InsightLens, and PropelEdge. Measured, not claimed.',
+  title: 'Customer Success — Enterprise AI Case Studies & Results | Tvameva',
+  description: 'Real enterprise outcomes: 70% self-service adoption, 5-hour proposal delivery, 60-70% lower delivery cost. Case studies across digital experience, analytics, and revenue orchestration.',
 };
 
 const solutionSuccessStories = [
