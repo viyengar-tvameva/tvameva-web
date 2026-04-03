@@ -233,24 +233,6 @@ export default async function CustomerSuccessPage() {
           );
         })}
 
-        {/* Advisory testimonial */}
-        {testimonials.filter((t) => t.solutionArea === 'advisory').length > 0 && (
-          <section className="section-padding bg-brand-navy-light/30">
-            <div className="section-container">
-              <h2 className="text-section-title font-display font-bold text-white mb-8">
-                Advisory &amp; Strategy
-              </h2>
-              <div className="max-w-3xl">
-                {testimonials
-                  .filter((t) => t.solutionArea === 'advisory')
-                  .map((t) => (
-                    <TestimonialCard key={t.id} testimonial={t} />
-                  ))}
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* CTA */}
         <section className="section-padding">
           <div className="section-container text-center">
