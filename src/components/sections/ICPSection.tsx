@@ -3,7 +3,7 @@ import { ArrowRight, TrendingUp, Users, Cpu } from 'lucide-react';
 
 export function ICPSection() {
   return (
-    <section className="py-16 border-t border-brand-border/30">
+    <section className="py-16 border-t border-brand-border/30 bg-brand-navy-card/30">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>

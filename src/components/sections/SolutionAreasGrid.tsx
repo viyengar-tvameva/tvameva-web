@@ -26,7 +26,7 @@ const visibleSlugs = ['engageos', 'insightlens', 'propeledge'];
 
 export function SolutionAreasGrid() {
   return (
-    <section id="solutions" className="py-16 border-t border-brand-border/30">
+    <section id="solutions" className="py-16 bg-brand-navy-light/20 border-y border-brand-border/30">
       <div className="section-container">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-section-title font-display font-bold text-white">

@@ -199,7 +199,7 @@ export const testimonials: Testimonial[] = [
     title: 'Enterprise AI Data & Cloud Sales Leader, AWS & GCP Certified AI/ML Expert',
     quote: 'I\'ve had the pleasure of working closely with Varada at LTTS, where he has been instrumental in driving high-impact digital transformation solutions for our strategic customers. He possesses a rare combination of deep technical knowledge, nuanced expertise in enterprise transformations, and sharp business acumen. He doesn\'t just know the how — he knows the why behind every move. Whether advising on strategic do\'s and don\'ts or architecting a complex solution, he consistently adds value that wins both trust and business.',
     highlights: [],
-    solutionArea: 'engageos',
+    solutionArea: 'advisory',
   },
   {
     id: 'venugopal-arcot-propeledge',

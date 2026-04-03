@@ -89,7 +89,7 @@ export function HomeHeroVisual({ className = '', onReveal }: { className?: strin
   }, [onReveal]);
 
   return (
-    <div className={`relative w-full h-[38vh] overflow-hidden ${className}`}>
+    <div className={`relative w-full h-[32vh] overflow-hidden ${className}`}>
       {words.map((word, i) => {
         const entry = getEntryPosition(i);
         const cloud = getCloudPosition(i, words.length);
@@ -231,10 +231,10 @@ export function HomeHeroVisual({ className = '', onReveal }: { className?: strin
         <motion.span
           className="font-display font-bold tracking-tight"
           animate={{
-            scale: phase === 'reveal' ? 1 : phase === 'headline' ? 0.35 : 0.3,
+            scale: phase === 'reveal' ? 1 : phase === 'headline' ? 0.4 : 0.3,
             opacity: phase === 'reveal' ? 1 : phase === 'headline' ? 0.2 : 0,
             filter: phase === 'reveal' ? 'blur(0px)' : phase === 'headline' ? 'blur(0px)' : 'blur(16px)',
-            y: phase === 'headline' ? 130 : 0,
+            y: phase === 'headline' ? 60 : 0,
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           style={{ fontSize: 'clamp(4rem, 10vw, 8rem)' }}
