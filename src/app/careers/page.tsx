@@ -8,7 +8,7 @@ import { CheckCircle, Send } from 'lucide-react';
 
 export default function CareersPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', role: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', role: '', linkedin: '', message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,12 +18,12 @@ export default function CareersPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          webform_id: 'careers_inquiry',
+          webform_id: 'contact_inquiry',
           name: form.name,
           email: form.email,
-          phone: form.phone,
-          role: form.role,
-          message: form.message,
+          company: `[CAREERS] Role: ${form.role} | Phone: ${form.phone}`,
+          message: form.message + (form.linkedin ? `\n\nLinkedIn: ${form.linkedin}` : ''),
+          type: 'careers',
         }),
       });
       if (response.ok) {
@@ -141,6 +141,16 @@ export default function CareersPage() {
                         <option value="customer-success">Customer Success Lead</option>
                         <option value="other">Other</option>
                       </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono text-brand-gray-400 uppercase tracking-wider mb-1.5">LinkedIn Profile</label>
+                      <input
+                        type="url"
+                        value={form.linkedin}
+                        onChange={(e) => setForm((p) => ({ ...p, linkedin: e.target.value }))}
+                        className="w-full px-4 py-2.5 bg-brand-navy-surface border border-brand-border rounded-button text-sm text-white placeholder:text-brand-gray-600 focus:border-brand-amber focus:outline-none"
+                        placeholder="https://linkedin.com/in/yourprofile"
+                      />
                     </div>
                     <div>
                       <label className="block text-xs font-mono text-brand-gray-400 uppercase tracking-wider mb-1.5">Tell us about yourself</label>
