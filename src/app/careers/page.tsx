@@ -13,8 +13,7 @@ export default function CareersPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const drupalUrl = process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || 'http://localhost:8080';
-      const response = await fetch(`${drupalUrl}/webform_rest/submit`, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

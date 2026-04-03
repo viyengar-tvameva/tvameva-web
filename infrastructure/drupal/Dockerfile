@@ -1,7 +1,7 @@
 FROM drupal:10-apache
 
 # Install Drush + Webform modules
-RUN composer require drush/drush drupal/webform drupal/webform_rest --working-dir=/opt/drupal && \
+RUN composer require drush/drush drupal/webform drupal/webform_rest drupal/smtp --working-dir=/opt/drupal && \
     ln -sf /opt/drupal/vendor/bin/drush /usr/local/bin/drush
 
 # Ensure settings directory exists and is writable during build
