@@ -24,6 +24,9 @@ import { SolutionAdvisoryExtended } from '@/components/sections/solution/Solutio
 
 import { solutionAreas, getSolutionBySlug, hasEnrichedContent } from '@/data/solutions';
 import drupalClient from '@/utils/drupal-client';
+import { AgentPipelineFlow, MetricsComparison } from '@/components/visuals';
+import { TestimonialCard } from '@/components/visuals/TestimonialCard';
+import { testimonials } from '@/data/content';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -72,13 +75,25 @@ export default async function SolutionAreaPage({ params }: Props) {
         <SolutionHero solution={sa} />
         {isEnriched ? (
           <>
-            <SolutionChallenge solution={sa} />
-            <SolutionValueDrivers solution={sa} />
-            <SolutionPodModel solution={sa} />
-            <SolutionTechStack solution={sa} />
-            <SolutionProofPoints solution={sa} />
             <SolutionMarketContext solution={sa} />
-            <SolutionExpansionPath solution={sa} />
+            <SolutionChallenge solution={sa} />
+            {sa.workflowSteps && (
+              <section className="section-padding bg-brand-navy-light/30">
+                <div className="section-container">
+                  <AgentPipelineFlow data={sa.workflowSteps} />
+                </div>
+              </section>
+            )}
+            {sa.metricsComparison && (
+              <section className="section-padding">
+                <div className="section-container">
+                  <MetricsComparison data={sa.metricsComparison} />
+                </div>
+              </section>
+            )}
+            <SolutionValueDrivers solution={sa} />
+            <SolutionTechStack solution={sa} />
+            <SolutionProofPoints solution={sa} testimonials={testimonials.filter((t) => t.solutionArea === sa.slug)} />
             <SolutionAdvisoryExtended solution={sa} />
           </>
         ) : (

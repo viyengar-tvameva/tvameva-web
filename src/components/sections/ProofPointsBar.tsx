@@ -1,7 +1,12 @@
 // ProofPointsBar — horizontal stat callouts
-import { proofPoints } from '@/data/content';
+import { proofPoints as staticProofPoints, type ProofPoint } from '@/data/content';
 
-export function ProofPointsBar() {
+interface Props {
+  data?: ProofPoint[];
+}
+
+export function ProofPointsBar({ data }: Props = {}) {
+  const proofPoints = data ?? staticProofPoints;
   return (
     <section className="relative border-y border-brand-border bg-brand-navy-light/50">
       <div className="section-container py-8">

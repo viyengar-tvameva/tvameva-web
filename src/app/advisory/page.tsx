@@ -2,8 +2,13 @@ import { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { solutionAreas } from '@/data/solutions';
+import { testimonials } from '@/data/content';
 import { ArrowRight, Compass, Database, Server, Users, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { TestimonialCard } from '@/components/visuals/TestimonialCard';
+import { AdvisoryBuildingBlocks } from '@/components/visuals/AdvisoryBuildingBlocks';
+
+const visibleSlugs = ['engageos', 'insightlens', 'propeledge'];
 
 export const metadata: Metadata = {
   title: 'Advisory — AI Assessments & Readiness Evaluations',
@@ -25,7 +30,7 @@ const assessments = [
     href: '/advisory',
     featured: false,
   },
-  ...solutionAreas.map((sa) => ({
+  ...solutionAreas.filter((sa) => visibleSlugs.includes(sa.slug)).map((sa) => ({
     name: sa.advisory.name,
     scope: sa.advisory.description,
     appearsOn: `${sa.name} solution page`,
@@ -42,24 +47,32 @@ export default function AdvisoryPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-brand" />
+        <section className="relative pt-32 pb-20 overflow-hidden min-h-[80vh] flex items-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-navy-light to-brand-navy-card" />
           <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-brand-amber/5 rounded-full blur-[120px]" />
           <div className="relative section-container">
-            <div className="max-w-3xl">
-              <h1 className="text-hero-md lg:text-hero-lg font-display font-bold text-white">
-                Every AI transformation starts with{' '}
-                <span className="gradient-text">knowing where you stand.</span>
-              </h1>
-              <p className="mt-6 text-lg text-brand-gray-300 leading-relaxed">
-                Our advisory engagements give you a clear-eyed assessment of your current state,
-                a prioritized roadmap, and a business case your leadership team can act on—in
-                2–4 weeks, not 2–4 months.
-              </p>
-              <Link href="/advisory/ai-maturity" className="btn-primary mt-8 text-base px-8 py-4">
-                Take the AI Maturity Assessment
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div>
+                <p className="font-mono text-xs text-brand-amber uppercase tracking-widest mb-4">
+                  Advisory Services
+                </p>
+                <h1 className="text-hero-md lg:text-hero-lg font-display font-bold text-white">
+                  Every AI transformation starts with{' '}
+                  <span className="gradient-text">knowing where you stand.</span>
+                </h1>
+                <p className="mt-6 text-lg text-brand-gray-300 leading-relaxed">
+                  Our advisory engagements give you a clear-eyed assessment of your current state,
+                  a prioritized roadmap, and a business case your leadership team can act on — in
+                  2–4 weeks, not 2–4 months.
+                </p>
+                <Link href="/advisory/ai-maturity" className="btn-primary mt-8 inline-flex text-base px-8 py-4">
+                  Take the AI Maturity Assessment
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </div>
+              <div className="hidden lg:block">
+                <AdvisoryBuildingBlocks />
+              </div>
             </div>
           </div>
         </section>
@@ -137,6 +150,19 @@ export default function AdvisoryPage() {
         </section>
 
         {/* Contact CTA */}
+        {/* Advisory testimonial */}
+        {testimonials.filter((t) => t.solutionArea === 'advisory').length > 0 && (
+          <section className="section-padding bg-brand-navy-light/30">
+            <div className="section-container max-w-3xl">
+              {testimonials
+                .filter((t) => t.solutionArea === 'advisory')
+                .map((t) => (
+                  <TestimonialCard key={t.id} testimonial={t} />
+                ))}
+            </div>
+          </section>
+        )}
+
         <section className="section-padding">
           <div className="section-container text-center">
             <h2 className="text-section-title font-display font-bold text-white mb-4">

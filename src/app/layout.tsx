@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
+import { Analytics } from '@/components/common/Analytics';
+import { HubSpotTracking } from '@/components/common/HubSpot';
 
 export const metadata: Metadata = {
   title: {
@@ -7,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | Tvameva',
   },
   description:
-    'Five AI-native solution areas. Dedicated pods of 5–7 specialists. Outcome-based pricing. We go deep on the platforms you already use—Drupal, Google Cloud, Salesforce, Algolia, Threekit.',
+    'AI-native solution areas. Dedicated pods of 5–7 specialists. Outcome-based pricing. We go deep on the platforms you already use—Drupal, Google Cloud, Salesforce, Algolia, Threekit.',
   keywords: [
     'AI solutions',
     'enterprise AI',
@@ -28,13 +30,13 @@ export const metadata: Metadata = {
     siteName: 'Tvameva',
     title: 'Tvameva — AI-Native Solutions for Enterprise Platforms',
     description:
-      'Five AI-native solution areas. Dedicated pods. Outcome-based pricing. Results, not timesheets.',
+      'AI-native solution areas. Dedicated pods. Outcome-based pricing. Results, not timesheets.',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Tvameva' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Tvameva — AI-Native Solutions for Enterprise Platforms',
-    description: 'Five AI-native solution areas. Dedicated pods. Outcome-based pricing.',
+    description: 'AI-native solution areas. Dedicated pods. Outcome-based pricing.',
   },
   robots: {
     index: true,
@@ -59,6 +61,8 @@ export default function RootLayout({
       </head>
       <body className="bg-brand-navy text-white font-body antialiased min-h-screen">
         {children}
+        <Analytics />
+        <HubSpotTracking />
       </body>
     </html>
   );

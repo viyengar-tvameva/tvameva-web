@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { SolutionArea, ProofPointCase } from '@/data/solutions';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, Factory, ChevronDown, CheckCircle2, ArrowUpRight } from 'lucide-react';
+import { Building2, Factory, ChevronDown, CheckCircle2, ArrowUpRight, Quote } from 'lucide-react';
 import { Reveal, GlowDivider } from '@/components/common/Animations';
+import Image from 'next/image';
+import type { Testimonial } from '@/data/content';
 
 const industryConfig: Record<string, { icon: React.ElementType; accent: string; border: string; bg: string }> = {
   'Hi-Tech / Semiconductor': { icon: Building2, accent: 'text-brand-teal', border: 'border-brand-teal/20 hover:border-brand-teal/50', bg: 'from-brand-teal/5 to-transparent' },
@@ -17,8 +19,8 @@ function ProofCard({ proof }: { proof: ProofPointCase }) {
   const Icon = config.icon;
 
   return (
-    <div className={`rounded-xl border bg-gradient-to-br ${config.bg} bg-brand-navy-card/90 backdrop-blur-sm transition-all duration-500 ${config.border}`}>
-      <div className="p-6 lg:p-8">
+    <div className={`rounded-xl border bg-gradient-to-br ${config.bg} bg-brand-navy-card/90 backdrop-blur-sm transition-all duration-500 w-full flex flex-col ${config.border}`}>
+      <div className="p-6 lg:p-8 flex-1 flex flex-col">
         <div className="flex items-center gap-2 mb-4">
           <Icon className={`w-4 h-4 ${config.accent}`} />
           <span className={`text-[11px] font-bold uppercase tracking-[0.15em] ${config.accent}`}>
@@ -87,7 +89,12 @@ function ProofCard({ proof }: { proof: ProofPointCase }) {
   );
 }
 
-export function SolutionProofPoints({ solution }: { solution: SolutionArea }) {
+interface Props {
+  solution: SolutionArea;
+  testimonials?: Testimonial[];
+}
+
+export function SolutionProofPoints({ solution, testimonials = [] }: Props) {
   if (!solution.proofPoints || solution.proofPoints.length === 0) return null;
 
   return (
@@ -99,7 +106,7 @@ export function SolutionProofPoints({ solution }: { solution: SolutionArea }) {
             <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-teal">
                 <ArrowUpRight className="w-3.5 h-3.5 inline mr-1.5 -mt-0.5" />
-                Results
+                Customer Success
               </span>
               <h2 className="mt-3 text-section-title lg:text-hero-md font-display font-bold text-white">
                 Outcomes from the field — not from a slide deck.
@@ -107,10 +114,35 @@ export function SolutionProofPoints({ solution }: { solution: SolutionArea }) {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto items-stretch">
             {solution.proofPoints.map((proof, i) => (
-              <Reveal key={proof.id} delay={i * 0.15}>
+              <Reveal key={proof.id} delay={i * 0.15} className="flex">
                 <ProofCard proof={proof} />
+              </Reveal>
+            ))}
+
+            {/* Testimonial fills the grid alongside proof points */}
+            {testimonials.map((t) => (
+              <Reveal key={t.id} delay={solution.proofPoints!.length * 0.15} className="flex">
+                <div className="rounded-xl border border-brand-amber/20 bg-gradient-to-br from-brand-amber/5 to-transparent bg-brand-navy-card/90 backdrop-blur-sm w-full flex flex-col p-6 lg:p-8 relative overflow-hidden">
+                  <Quote className="absolute top-6 right-6 w-10 h-10 text-brand-amber/10" />
+
+                  <div className="flex items-start gap-4 mb-4">
+                    {t.photo && (
+                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-amber/30 shrink-0">
+                        <Image src={t.photo} alt={t.name} width={48} height={48} className="w-full h-full object-cover" />
+                      </div>
+                    )}
+                    <div>
+                      <h4 className="font-display font-semibold text-white">{t.name}</h4>
+                      <p className="text-xs text-brand-amber/80">{t.title}</p>
+                    </div>
+                  </div>
+
+                  <blockquote className="text-sm text-brand-gray-300 leading-relaxed italic flex-1">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                </div>
               </Reveal>
             ))}
           </div>

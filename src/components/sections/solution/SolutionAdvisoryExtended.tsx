@@ -28,26 +28,31 @@ export function SolutionAdvisoryExtended({ solution }: { solution: SolutionArea 
                       <div className="flex items-center gap-2 mb-4">
                         <Calendar className="w-4 h-4 text-brand-amber" />
                         <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-amber">
-                          Advisory
+                          Next Step
                         </span>
                       </div>
                       <h2 className="text-section-title lg:text-hero-md font-display font-bold text-white">
-                        {solution.advisoryExtended.headline}
+                        Ready to see {solution.name} in action?
                       </h2>
                       <p className="mt-4 text-brand-gray-300 leading-relaxed">
-                        {solution.advisoryExtended.body}
+                        We&apos;ll walk you through a {solution.name} demo — how our AI Pod delivers, what the economics look like, and how it applies to your specific use case. 30 minutes. No commitment.
                       </p>
-                      <motion.div className="mt-8" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                        <Link href="/advisory" className="btn-primary inline-flex">
+                      <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                          <a
+                            href="https://calendly.com/varada-tvameva/30min"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary inline-flex"
+                          >
+                            Book a 30-Minute Demo
+                            <ArrowRight className="ml-2 w-4 h-4" />
+                          </a>
+                        </motion.div>
+                        <Link href="/contact" className="btn-secondary inline-flex">
                           {solution.advisory.cta}
-                          <ArrowRight className="ml-2 w-4 h-4" />
                         </Link>
-                      </motion.div>
-                      {solution.advisoryExtended.pricingNote && (
-                        <p className="mt-4 text-sm text-brand-gray-500 font-mono">
-                          {solution.advisoryExtended.pricingNote}
-                        </p>
-                      )}
+                      </div>
                     </div>
 
                     {/* Right — Scope items */}

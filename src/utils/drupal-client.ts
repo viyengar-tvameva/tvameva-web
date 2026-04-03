@@ -6,6 +6,7 @@
  */
 
 import type { SolutionArea, ValueDriver, ProofPointCase, TechStackLayer, ExpansionConnection } from '@/data/solutions';
+import type { Differentiator, ProofPoint, CaseStudy, PodRole } from '@/data/content';
 
 const DRUPAL_BASE_URL = process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || 'http://localhost:8080';
 const USE_CMS = process.env.NEXT_PUBLIC_USE_CMS === 'true';
@@ -170,6 +171,12 @@ function mapDrupalToSolutionArea(resource: DrupalResource): SolutionArea {
           metaDescription: textValue(a.field_meta_description),
         }
       : undefined,
+
+    // Visual component data
+    architectureDiagram: jsonFieldValue(a.field_architecture_diagram, undefined) || undefined,
+    workflowSteps: jsonFieldValue(a.field_workflow_steps, undefined) || undefined,
+    metricsComparison: jsonFieldValue(a.field_metrics_comparison, undefined) || undefined,
+    relationshipGraph: jsonFieldValue(a.field_relationship_graph, undefined) || undefined,
   };
 }
 
@@ -232,6 +239,87 @@ return data.map(mapDrupalToSolutionArea);
       return mapDrupalToSolutionArea(data[0]);
     } catch (error) {
       console.error(`Failed to fetch solution ${slug} from CMS:`, error);
+      return null;
+    }
+  }
+
+  async getDifferentiators(): Promise<Differentiator[] | null> {
+    if (!USE_CMS) return null;
+    try {
+      const response = await this.fetch<DrupalResource>('node/differentiator', {
+        'sort': 'field_priority_order',
+      });
+      const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
+      return data.map((r) => ({
+        id: r.attributes.title?.toLowerCase().replace(/\s+/g, '-') || '',
+        priority: r.attributes.field_priority_order || 99,
+        title: r.attributes.title || '',
+        whatWeSay: textValue(r.attributes.field_what_we_say),
+        whatBuyerHears: textValue(r.attributes.field_what_buyer_hears),
+        icon: r.attributes.field_icon || '',
+      }));
+    } catch (error) {
+      console.error('Failed to fetch differentiators from CMS:', error);
+      return null;
+    }
+  }
+
+  async getProofPoints(): Promise<ProofPoint[] | null> {
+    if (!USE_CMS) return null;
+    try {
+      const response = await this.fetch<DrupalResource>('node/proof_point', {
+        'sort': 'field_priority',
+      });
+      const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
+      return data.map((r) => ({
+        id: r.attributes.title?.toLowerCase().replace(/\s+/g, '-') || '',
+        stat: r.attributes.field_stat_number || '',
+        label: r.attributes.title || '',
+        context: textValue(r.attributes.field_context),
+      }));
+    } catch (error) {
+      console.error('Failed to fetch proof points from CMS:', error);
+      return null;
+    }
+  }
+
+  async getCaseStudies(): Promise<CaseStudy[] | null> {
+    if (!USE_CMS) return null;
+    try {
+      const response = await this.fetch<DrupalResource>('node/case_study');
+      const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
+      return data.map((r) => ({
+        id: r.attributes.title?.toLowerCase().replace(/\s+/g, '-') || '',
+        title: r.attributes.title || '',
+        vertical: r.attributes.field_vertical_label || '',
+        companySize: r.attributes.field_company_size || '',
+        challenge: textValue(r.attributes.field_challenge),
+        result: textValue(r.attributes.field_result),
+        metrics: jsonFieldValue(r.attributes.field_metrics_json, []),
+        solutionAreas: jsonFieldValue(r.attributes.field_solution_areas_json, []),
+      }));
+    } catch (error) {
+      console.error('Failed to fetch case studies from CMS:', error);
+      return null;
+    }
+  }
+
+  async getPodRoles(): Promise<PodRole[] | null> {
+    if (!USE_CMS) return null;
+    try {
+      const response = await this.fetch<DrupalResource>('node/pod_role', {
+        'sort': 'field_priority',
+      });
+      const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
+      return data.map((r) => ({
+        title: r.attributes.title || '',
+        responsibility: textValue(r.attributes.field_responsibility),
+        aiAugmentation: textValue(r.attributes.field_ai_augmentation),
+        icon: r.attributes.field_icon || '',
+        type: (r.attributes.field_role_type || 'agent') as 'agent' | 'human',
+      }));
+    } catch (error) {
+      console.error('Failed to fetch pod roles from CMS:', error);
       return null;
     }
   }

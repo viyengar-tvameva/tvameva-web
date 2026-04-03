@@ -2,9 +2,7 @@ export function PartnerLogos() {
   const partners = [
     { name: 'Acquia', label: 'Strategic Implementation Partner' },
     { name: 'Google Cloud', label: 'GCP Partner' },
-    { name: 'Salesforce', label: 'Agentforce Practice' },
-    { name: 'Algolia', label: 'Certified Implementation Partner' },
-    { name: 'Threekit', label: 'Implementation Partner' },
+    { name: 'Salesforce', label: 'CRM Integration' },
   ];
 
   return (

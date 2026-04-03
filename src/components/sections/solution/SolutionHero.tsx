@@ -5,14 +5,33 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { GradientMesh, GridPattern, PulseBadge } from '@/components/common/Animations';
+import { ArchitectureStack } from '@/components/visuals';
 
-function ArchitectureDiagram() {
-  const layers = [
+const diagramData: Record<string, { label: string; sub: string; color: string; bg: string }[]> = {
+  engageos: [
     { label: 'EXPERIENCE LAYER', sub: 'Brand Websites · 3D Configurator · Mobile · Dealer Portal', color: '#f5a623', bg: 'rgba(245,166,35,0.08)' },
     { label: 'DXP & CONTENT', sub: 'Acquia Cloud · Site Studio · DAM · CDP · Personalization', color: '#2ed8a3', bg: 'rgba(46,216,163,0.08)' },
     { label: 'INTEGRATION HUB', sub: 'Boomi iPaaS · Connectors · Real-time Sync · API Gateway', color: '#4a90d9', bg: 'rgba(74,144,217,0.08)' },
     { label: 'BUSINESS SYSTEMS', sub: 'CRM · ERP · Marketing Automation · Analytics', color: '#a78bfa', bg: 'rgba(167,139,250,0.06)' },
-  ];
+  ],
+  insightlens: [
+    { label: 'DECISION LAYER', sub: 'Executive Dashboards · Looker · Conversational Analytics', color: '#4a90d9', bg: 'rgba(74,144,217,0.08)' },
+    { label: 'ML & AI', sub: 'Vertex AI · Gemini · Model Registry · Drift Monitoring', color: '#f5a623', bg: 'rgba(245,166,35,0.08)' },
+    { label: 'DATA PLATFORM', sub: 'BigQuery Lakehouse · dbt · Cloud Composer · Dataflow', color: '#2ed8a3', bg: 'rgba(46,216,163,0.08)' },
+    { label: 'DATA SOURCES', sub: 'CRM · ERP · Product Telemetry · External APIs', color: '#a78bfa', bg: 'rgba(167,139,250,0.06)' },
+  ],
+  propeledge: [
+    { label: 'PROPOSAL OUTPUT', sub: 'DOC · PDF · PPT · White-labeled Deliverables', color: '#e8593c', bg: 'rgba(232,89,60,0.08)' },
+    { label: 'AGENT PIPELINE', sub: 'Intake → POV → Demo → Proposal · Human Review Gates', color: '#f5a623', bg: 'rgba(245,166,35,0.08)' },
+    { label: 'KNOWLEDGE BASE', sub: 'Institutional Memory · Past Proposals · Competitive Intel', color: '#2ed8a3', bg: 'rgba(46,216,163,0.08)' },
+    { label: 'DATA SOURCES', sub: 'CRM · Web Research · Industry Analysis · Client Roadmaps', color: '#4a90d9', bg: 'rgba(74,144,217,0.08)' },
+  ],
+};
+
+const defaultDiagram = diagramData.engageos;
+
+function ArchitectureDiagram({ slug }: { slug?: string }) {
+  const layers = (slug && diagramData[slug]) || defaultDiagram;
 
   return (
     <div className="relative w-full max-w-md">
@@ -88,8 +107,10 @@ function ArchitectureDiagram() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <rect x="120" y="345" width="160" height="28" rx="14" fill="rgba(245,166,35,0.15)" stroke="#f5a623" strokeWidth="1" strokeOpacity="0.5" />
-          <text x="200" y="364" textAnchor="middle" fill="#f5a623" fontSize="9" fontWeight="600" letterSpacing="1">ACCELERATOR IP</text>
+          <rect x="100" y="345" width="200" height="28" rx="14" fill="rgba(245,166,35,0.15)" stroke="#f5a623" strokeWidth="1" strokeOpacity="0.5" />
+          <text x="200" y="364" textAnchor="middle" fill="#f5a623" fontSize="9" fontWeight="600" letterSpacing="1">
+            {slug === 'propeledge' ? 'AGENTIC PIPELINE' : slug === 'insightlens' ? 'GCP ANALYTICS STACK' : 'ACCELERATOR IP'}
+          </text>
         </motion.g>
       </svg>
     </div>
@@ -143,16 +164,27 @@ export function SolutionHero({ solution }: { solution: SolutionArea }) {
               transition={{ delay: 0.6, duration: 0.5 }}
             >
               {isEnriched && solution.heroCTAs ? (
-                solution.heroCTAs.map((cta, i) => (
-                  <Link
-                    key={i}
-                    href={cta.href}
-                    className={cta.variant === 'primary' ? 'btn-primary' : 'btn-secondary'}
-                  >
-                    {cta.label}
-                    {cta.variant === 'primary' && <ArrowRight className="ml-2 w-4 h-4" />}
-                  </Link>
-                ))
+                solution.heroCTAs.map((cta, i) => {
+                  const isExternal = cta.href.startsWith('http');
+                  const className = cta.variant === 'primary' ? 'btn-primary' : 'btn-secondary';
+                  return isExternal ? (
+                    <a
+                      key={i}
+                      href={cta.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                    >
+                      {cta.label}
+                      {cta.variant === 'primary' && <ArrowRight className="ml-2 w-4 h-4" />}
+                    </a>
+                  ) : (
+                    <Link key={i} href={cta.href} className={className}>
+                      {cta.label}
+                      {cta.variant === 'primary' && <ArrowRight className="ml-2 w-4 h-4" />}
+                    </Link>
+                  );
+                })
               ) : (
                 <>
                   <Link href="/advisory" className="btn-primary">
@@ -175,7 +207,11 @@ export function SolutionHero({ solution }: { solution: SolutionArea }) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <ArchitectureDiagram />
+              {solution.architectureDiagram ? (
+                <ArchitectureStack data={solution.architectureDiagram} />
+              ) : (
+                <ArchitectureDiagram slug={solution.slug} />
+              )}
             </motion.div>
           )}
         </div>

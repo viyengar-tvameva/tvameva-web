@@ -1,16 +1,26 @@
 'use client';
 
-import Link from 'next/link';
+import { useState, useCallback } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { HomeHeroVisual } from '@/components/visuals/HomeHeroVisual';
 
 export function HeroSection() {
+  const [showContent, setShowContent] = useState(false);
+
+  const handleReveal = useCallback(() => {
+    setShowContent(true);
+    // Hide content before next cycle starts (cycle is 22s, headline phase starts at 12.5s)
+    setTimeout(() => setShowContent(false), 8500);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative h-[100vh] flex flex-col items-center justify-start pt-16 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-brand" />
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand-amber/5 rounded-full blur-[120px] animate-pulse-glow" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-teal/5 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
-      
+
       {/* Grid pattern overlay */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -23,51 +33,58 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative section-container pt-24 lg:pt-32">
-        <div className="max-w-4xl">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-amber/10 border border-brand-amber/20 rounded-full mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-amber animate-pulse" />
-            <span className="text-xs font-mono text-brand-amber tracking-wider uppercase">
-              AI-native solutions provider
-            </span>
-          </div>
+      {/* The storm animation — full screen */}
+      <div className="relative w-full max-w-6xl mx-auto px-6">
+        <HomeHeroVisual onReveal={handleReveal} />
+      </div>
 
-          {/* H1 */}
-          <h1 className="text-hero-lg lg:text-hero-xl font-display font-bold text-white text-balance">
-            Your enterprise runs on platforms.{' '}
-            <span className="gradient-text">We make them intelligent.</span>
-          </h1>
+      {/* Headline + subheadline + CTA — staggered reveal */}
+      <div className="relative text-center px-8 z-10 -mt-8 max-w-4xl mx-auto">
+        <motion.h1
+          className="text-hero-md lg:text-hero-lg font-display font-bold text-white text-balance"
+          animate={{
+            opacity: showContent ? 1 : 0,
+            y: showContent ? 0 : 30,
+          }}
+          transition={{ duration: 0.8, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Your enterprise runs on platforms.{' '}
+          <span className="gradient-text">We make them intelligent.</span>
+        </motion.h1>
 
-          {/* Subhead */}
-          <p className="mt-6 text-lg lg:text-xl text-brand-gray-300 leading-relaxed max-w-2xl">
-            Five AI-native solution areas. Dedicated pods that combine human expertise
-            with AI-first delivery. Outcome-based pricing that aligns our success with yours.
-          </p>
+        <motion.p
+          className="mt-6 text-lg lg:text-xl text-brand-gray-300 leading-relaxed max-w-2xl mx-auto"
+          animate={{
+            opacity: showContent ? 1 : 0,
+            y: showContent ? 0 : 20,
+          }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Three AI-native solutions that equip your leadership with decision intelligence,
+          transform your customer experience, and build a revenue engine that outpaces the market.
+        </motion.p>
 
-          {/* CTAs */}
-          <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
-            <Link href="/advisory/ai-maturity" className="btn-primary text-base px-8 py-4">
-              Take the AI Maturity Assessment
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
-            <Link href="#solutions" className="btn-secondary text-base px-8 py-4">
-              Explore Solutions
-            </Link>
-          </div>
-
-          {/* Platform partners */}
-          <div className="mt-16 flex items-center gap-8 text-brand-gray-400">
-            <span className="text-xs font-mono uppercase tracking-wider">Deep on</span>
-            <div className="flex items-center gap-6 text-sm font-display text-brand-gray-300">
-              {['Acquia', 'Google Cloud', 'Salesforce', 'Algolia', 'Threekit'].map((partner) => (
-                <span key={partner} className="hidden sm:inline opacity-60 hover:opacity-100 transition-opacity">
-                  {partner}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+        <motion.div
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          animate={{
+            opacity: showContent ? 1 : 0,
+            y: showContent ? 0 : 15,
+          }}
+          transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <a
+            href="https://calendly.com/varada-tvameva/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-base px-8 py-4"
+          >
+            Book a 30-Minute Demo
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </a>
+          <a href="#solutions" className="btn-secondary text-base px-8 py-4">
+            Explore Solutions
+          </a>
+        </motion.div>
       </div>
     </section>
   );

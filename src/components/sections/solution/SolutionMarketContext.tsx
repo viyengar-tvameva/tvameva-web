@@ -26,21 +26,23 @@ export function SolutionMarketContext({ solution }: { solution: SolutionArea }) 
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+          <div className={`grid grid-cols-1 sm:grid-cols-2 ${solution.marketContext.stats.length <= 3 ? 'lg:grid-cols-3' : solution.marketContext.stats.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-5'} gap-4 max-w-6xl mx-auto items-stretch`}>
             {solution.marketContext.stats.map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="group relative rounded-xl border border-brand-border bg-brand-navy-card/80 backdrop-blur-sm p-6 text-center hover:border-brand-amber/30 transition-all duration-300 hover:-translate-y-1">
+                <div className="group relative rounded-xl border border-brand-border bg-brand-navy-card/80 backdrop-blur-sm p-6 text-center hover:border-brand-amber/30 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col justify-between min-h-[180px]">
                   {/* Gradient top accent */}
                   <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-brand-amber/30 to-transparent" />
 
-                  <AnimatedCounter
-                    value={item.value}
-                    className="text-3xl lg:text-4xl font-display font-bold bg-gradient-to-r from-brand-amber to-brand-amber-light bg-clip-text text-transparent"
-                  />
-                  <p className="mt-2 text-sm font-semibold text-white font-display">
-                    {item.stat}
-                  </p>
-                  <p className="mt-1.5 text-xs text-brand-gray-500 leading-relaxed">
+                  <div>
+                    <AnimatedCounter
+                      value={item.value}
+                      className="text-3xl lg:text-4xl font-display font-bold bg-gradient-to-r from-brand-amber to-brand-amber-light bg-clip-text text-transparent"
+                    />
+                    <p className="mt-2 text-sm font-semibold text-white font-display">
+                      {item.stat}
+                    </p>
+                  </div>
+                  <p className="mt-2 text-xs text-brand-gray-500 leading-relaxed">
                     {item.context}
                   </p>
                 </div>

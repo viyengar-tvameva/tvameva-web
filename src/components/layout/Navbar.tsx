@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -11,15 +11,13 @@ const navItems = [
     label: 'Solutions',
     href: '/solutions',
     children: [
-      { label: 'EngageOS', href: '/solutions/engageos', tag: 'Acquia / Drupal' },
-      { label: 'InsightLens', href: '/solutions/insightlens', tag: 'Google Cloud' },
-      { label: 'ResolveIQ', href: '/solutions/resolveiq', tag: 'Salesforce / Oracle' },
-      { label: 'SearchCore', href: '/solutions/searchcore', tag: 'Algolia' },
-      { label: 'VisualForge', href: '/solutions/visualforge', tag: 'Threekit' },
+      { label: 'EngageOS', href: '/solutions/engageos', tag: '' },
+      { label: 'InsightLens', href: '/solutions/insightlens', tag: '' },
+      { label: 'PropelEdge', href: '/solutions/propeledge', tag: '' },
     ],
   },
   { label: 'How We Deliver', href: '/how-we-deliver' },
-  { label: 'Results', href: '/results' },
+  { label: 'Customer Success', href: '/results' },
   { label: 'Advisory', href: '/advisory' },
   { label: 'About', href: '/about' },
 ];
@@ -27,7 +25,17 @@ const navItems = [
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
+
+  const openDropdown = useCallback(() => {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    setDropdownOpen(true);
+  }, []);
+
+  const closeDropdown = useCallback(() => {
+    closeTimeout.current = setTimeout(() => setDropdownOpen(false), 150);
+  }, []);
 
   const isActive = (href: string) => {
     if (href === '/solutions') return pathname.startsWith('/solutions');
@@ -52,15 +60,19 @@ export function Navbar() {
                 <div
                   key={item.label}
                   className="relative"
-                  onMouseEnter={() => setDropdownOpen(true)}
-                  onMouseLeave={() => setDropdownOpen(false)}
+                  onMouseEnter={openDropdown}
+                  onMouseLeave={closeDropdown}
                 >
                   <button className={isActive(item.href) ? 'nav-link-active flex items-center gap-1' : 'nav-link flex items-center gap-1'}>
                     {item.label}
-                    <ChevronDown className="w-3.5 h-3.5" />
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {dropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-72 bg-brand-navy-card border border-brand-border rounded-card shadow-2xl shadow-black/40 p-2">
+                    <>
+                      {/* Invisible bridge to prevent gap-triggered close */}
+                      <div className="absolute top-full left-0 w-72 h-3" />
+                      <div className="absolute top-full left-0 pt-2 w-72" onMouseEnter={openDropdown}>
+                        <div className="bg-brand-navy-card border border-brand-border rounded-card shadow-2xl shadow-black/40 p-2">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
@@ -70,12 +82,16 @@ export function Navbar() {
                           <span className={`text-sm font-display group-hover:text-brand-amber transition-colors ${pathname === child.href ? 'text-brand-amber' : 'text-white'}`}>
                             {child.label}
                           </span>
-                          <span className="text-xs font-mono text-brand-gray-400">
-                            {child.tag}
-                          </span>
+                          {child.tag && (
+                            <span className="text-xs font-mono text-brand-gray-400">
+                              {child.tag}
+                            </span>
+                          )}
                         </Link>
                       ))}
-                    </div>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
               ) : (

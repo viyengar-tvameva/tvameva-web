@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { SolutionArea, ValueDriver } from '@/data/solutions';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Search, Eye, Globe, UserCheck, Megaphone, FileText, Sparkles } from 'lucide-react';
+import { ChevronDown, Search, Eye, Globe, UserCheck, Megaphone, FileText, Sparkles, Database, TrendingUp, BrainCircuit, MessageSquare, LayoutDashboard, ShieldCheck } from 'lucide-react';
 import { Reveal, StaggerContainer, StaggerItem, GlowDivider, GradientMesh } from '@/components/common/Animations';
 
 const categoryConfig: Record<string, { icon: React.ElementType; gradient: string; border: string; badge: string }> = {
@@ -43,6 +43,43 @@ const categoryConfig: Record<string, { icon: React.ElementType; gradient: string
     border: 'border-brand-gray-400/30 hover:border-brand-gray-400/60',
     badge: 'bg-brand-gray-400/10 text-brand-gray-400',
   },
+  // InsightLens categories
+  'Pipeline Engineering': {
+    icon: Database,
+    gradient: 'from-sa-insightlens/20 to-sa-insightlens/5',
+    border: 'border-sa-insightlens/30 hover:border-sa-insightlens/60',
+    badge: 'bg-sa-insightlens/10 text-sa-insightlens',
+  },
+  'Predictive Analytics': {
+    icon: TrendingUp,
+    gradient: 'from-brand-teal/20 to-brand-teal/5',
+    border: 'border-brand-teal/30 hover:border-brand-teal/60',
+    badge: 'bg-brand-teal/10 text-brand-teal',
+  },
+  'Prescriptive Intelligence': {
+    icon: BrainCircuit,
+    gradient: 'from-brand-amber/20 to-brand-amber/5',
+    border: 'border-brand-amber/30 hover:border-brand-amber/60',
+    badge: 'bg-brand-amber/10 text-brand-amber',
+  },
+  'Conversational Analytics': {
+    icon: MessageSquare,
+    gradient: 'from-sa-insightlens/20 to-brand-teal/5',
+    border: 'border-sa-insightlens/30 hover:border-brand-teal/60',
+    badge: 'bg-sa-insightlens/10 text-sa-insightlens',
+  },
+  'Executive Dashboards': {
+    icon: LayoutDashboard,
+    gradient: 'from-brand-orange/20 to-brand-orange/5',
+    border: 'border-brand-orange/30 hover:border-brand-orange/60',
+    badge: 'bg-brand-orange/10 text-brand-orange',
+  },
+  'Data Governance': {
+    icon: ShieldCheck,
+    gradient: 'from-brand-gray-400/20 to-brand-gray-400/5',
+    border: 'border-brand-gray-400/30 hover:border-brand-gray-400/60',
+    badge: 'bg-brand-gray-400/10 text-brand-gray-400',
+  },
 };
 
 function ValueDriverCard({ driver, index }: { driver: ValueDriver; index: number }) {
@@ -52,12 +89,12 @@ function ValueDriverCard({ driver, index }: { driver: ValueDriver; index: number
 
   return (
     <div
-className={`group relative rounded-xl border bg-brand-navy-card/80 backdrop-blur-sm transition-all duration-500 ${config.border} h-full flex flex-col`}
->
+      className={`group relative rounded-xl border bg-brand-navy-card/80 backdrop-blur-sm transition-all duration-500 flex flex-col w-full ${config.border}`}
+    >
       {/* Colored top accent bar */}
       <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${config.gradient}`} />
 
-      <div className="p-6 lg:p-8 flex-1">
+      <div className="p-6 lg:p-8 flex-1 flex flex-col">
         {/* Category badge + icon */}
         <div className="flex items-center gap-3 mb-4">
           <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${config.badge}`}>
@@ -150,22 +187,22 @@ export function SolutionValueDrivers({ solution }: { solution: SolutionArea }) {
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-teal">
                 Capabilities
               </span>
-              <h2 className="mt-3 text-section-title lg:text-hero-md font-display font-bold text-white">
-                Six capabilities that turn your digital platform into a{' '}
+                <h2 className="mt-3 text-section-title lg:text-hero-md font-display font-bold text-white">
+                {solution.valueDrivers?.length || ''} capabilities that drive{' '}
                 <span className="bg-gradient-to-r from-brand-amber to-brand-teal bg-clip-text text-transparent">
-                  revenue engine
+                  measurable business value
                 </span>
                 .
               </h2>
               <p className="mt-4 text-lg text-brand-gray-400 max-w-2xl mx-auto">
-                Each capability is delivered by our dedicated {solution.name} pod — a team of 5–7 specialists augmented by AI agents.
+                Each capability is delivered by our {solution.name} AI Pod — specialized agents doing the work, a small human team governing quality and outcomes.
               </p>
             </div>
           </Reveal>
 
           <StaggerContainer staggerDelay={0.12} className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
             {solution.valueDrivers.map((driver, index) => (
-              <StaggerItem key={driver.id}>
+              <StaggerItem key={driver.id} className="flex">
                 <ValueDriverCard driver={driver} index={index} />
               </StaggerItem>
             ))}

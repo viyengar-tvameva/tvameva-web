@@ -1,21 +1,26 @@
 import { Users, Target, Layers, Zap } from 'lucide-react';
-import { differentiators } from '@/data/content';
+import { differentiators as staticDifferentiators, type Differentiator } from '@/data/content';
 
 const iconMap: Record<string, React.ElementType> = {
   Users, Target, Layers, Zap,
 };
 
-export function DifferentiatorsSection() {
+interface Props {
+  data?: Differentiator[];
+}
+
+export function DifferentiatorsSection({ data }: Props = {}) {
+  const differentiators = data ?? staticDifferentiators;
   return (
-    <section className="section-padding bg-brand-navy-light/30">
+    <section className="py-16 bg-brand-navy-light/30 border-t border-brand-border/30">
       <div className="section-container">
-        <div className="max-w-2xl mb-16">
+        <div className="max-w-2xl mb-10">
           <h2 className="text-section-title font-display font-bold text-white">
             How we're different
           </h2>
           <p className="mt-4 text-brand-gray-300">
-            Not a body shop. Not a generalist. A delivery model built around AI-first 
-            teams, outcome accountability, platform depth, and reusable IP.
+            AI agents do the work. Humans govern the outcome. A delivery model built around
+            intelligence, outcome accountability, and reusable IP.
           </p>
         </div>
 

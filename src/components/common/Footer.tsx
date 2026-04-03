@@ -4,20 +4,17 @@ const footerLinks = {
   solutions: [
     { label: 'EngageOS', href: '/solutions/engageos' },
     { label: 'InsightLens', href: '/solutions/insightlens' },
-    { label: 'ResolveIQ', href: '/solutions/resolveiq' },
-    { label: 'SearchCore', href: '/solutions/searchcore' },
-    { label: 'VisualForge', href: '/solutions/visualforge' },
+    { label: 'PropelEdge', href: '/solutions/propeledge' },
   ],
   company: [
     { label: 'How We Deliver', href: '/how-we-deliver' },
-    { label: 'Results', href: '/results' },
+    { label: 'Customer Success', href: '/results' },
     { label: 'About', href: '/about' },
     { label: 'Careers', href: '/careers' },
   ],
   resources: [
     { label: 'Advisory Assessments', href: '/advisory' },
     { label: 'AI Maturity Assessment', href: '/advisory/ai-maturity' },
-    { label: 'Partner Ecosystem', href: '/partners' },
   ],
   legal: [
     { label: 'Privacy Policy', href: '/privacy' },
@@ -39,10 +36,6 @@ export function Footer() {
                 className="h-7 w-auto"
               />
             </Link>
-            <p className="mt-4 text-sm text-brand-gray-400 leading-relaxed max-w-xs">
-              AI-native solutions provider. Five solution areas. Dedicated pods.
-              Outcome-based pricing.
-            </p>
           </div>
 
           {/* Solutions */}

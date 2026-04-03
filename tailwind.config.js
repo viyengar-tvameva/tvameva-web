@@ -32,6 +32,7 @@ module.exports = {
           resolveiq: '#f5a623',
           searchcore: '#e8593c',
           visualforge: '#a78bfa',
+          propeledge: '#e8593c',
         },
       },
       fontFamily: {

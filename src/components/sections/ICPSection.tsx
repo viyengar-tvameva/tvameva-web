@@ -3,7 +3,7 @@ import { ArrowRight, TrendingUp, Users, Cpu } from 'lucide-react';
 
 export function ICPSection() {
   return (
-    <section className="section-padding">
+    <section className="py-16 border-t border-brand-border/30">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
@@ -11,18 +11,18 @@ export function ICPSection() {
               Built for enterprises growing faster than their tech teams
             </h2>
             <p className="mt-4 text-brand-gray-300 leading-relaxed">
-              You're a $500M–$1B company with momentum. Revenue is climbing, but your internal
-              technology teams can't keep pace with the AI disruption reshaping your industry.
-              You need a partner who brings the pods, the platform depth, and the IP—so you
+              Revenue is climbing, but your internal technology teams can&apos;t keep pace
+              with the AI disruption reshaping your industry. You need a partner who brings
+              the intelligence layer, the platform depth, and the accelerator IP — so you
               can move at the speed your business demands.
             </p>
             <p className="mt-4 text-brand-gray-300 leading-relaxed">
-              Traditional SI models give you headcount. We give you outcomes. Our pod model
-              delivers 40–60% lower cost than the pyramid FTE approach—with the same or
-              greater throughput.
+              Traditional SI models give you headcount. We give you outcomes. Our AI Pod model
+              delivers 60–70% lower cost than the traditional approach — with faster time-to-value
+              and quality that improves with every engagement.
             </p>
             <Link href="/how-we-deliver" className="btn-ghost mt-6">
-              See how our pod model works
+              See how we deliver
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -32,17 +32,17 @@ export function ICPSection() {
               {
                 icon: TrendingUp,
                 title: 'Revenue growth outpacing tech capability',
-                description: 'Your business is scaling but your platforms, integrations, and support operations are falling behind.',
+                description: 'Your business is scaling but your platforms, integrations, and decision-making infrastructure are falling behind.',
               },
               {
                 icon: Users,
                 title: 'Can\'t build AI teams fast enough',
-                description: 'Hiring AI specialists takes 6–12 months. Our pods are staffed, trained, and delivering in weeks.',
+                description: 'Hiring AI specialists takes 6–12 months. Our AI Pods are staffed, operational, and delivering in weeks.',
               },
               {
                 icon: Cpu,
-                title: 'Platforms you already use, made intelligent',
-                description: 'We don\'t ask you to change platforms. We go deep on Drupal, GCP, Salesforce, Algolia, and Threekit—the stack you already run.',
+                title: 'Your platforms, made intelligent',
+                description: 'We don\'t ask you to change platforms. We add our intelligence and agentic layer on top of the enterprise systems you already run.',
               },
             ].map((item) => (
               <div key={item.title} className="card">

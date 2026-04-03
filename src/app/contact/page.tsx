@@ -12,7 +12,8 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://34.56.251.119/webform_rest/submit', {
+      const drupalUrl = process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || 'http://localhost:8080';
+      const response = await fetch(`${drupalUrl}/webform_rest/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -52,12 +53,8 @@ export default function ContactPage() {
 
         <section className="section-padding">
           <div className="section-container">
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* General Inquiry */}
+            <div className="max-w-xl mx-auto">
               <div>
-                <h2 className="text-xl font-display font-semibold text-white mb-6">
-                  General inquiry
-                </h2>
 
                 {submitted ? (
                   <div className="card border-brand-teal/30 text-center py-12">
@@ -123,48 +120,6 @@ export default function ContactPage() {
                 )}
               </div>
 
-              {/* Schedule Assessment */}
-              <div>
-                <h2 className="text-xl font-display font-semibold text-white mb-6">
-                  Schedule an assessment
-                </h2>
-                <div className="card border-brand-amber/20 bg-gradient-to-br from-brand-amber/5 to-transparent">
-                  <Calendar className="w-8 h-8 text-brand-amber mb-4" />
-                  <h3 className="text-lg font-display font-semibold text-white mb-2">
-                    Advisory assessment call
-                  </h3>
-                  <p className="text-sm text-brand-gray-300 leading-relaxed mb-6">
-                    30-minute conversation to identify the right assessment for your organization.
-                    Our team will walk you through the process, scope, and expected outcomes.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    {[
-                      'AI Maturity Assessment',
-                      'Pod Readiness Evaluation',
-                      'DXP Readiness Assessment',
-                      'Data & AI Readiness Assessment',
-                      'Enterprise App Support Audit',
-                      'Search & Discovery Audit',
-                      'Visual Commerce Assessment',
-                    ].map((name) => (
-                      <div key={name} className="flex items-center gap-2 text-sm text-brand-gray-400">
-                        <CheckCircle className="w-3.5 h-3.5 text-brand-amber shrink-0" />
-                        {name}
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-xs text-brand-gray-500 mb-4">$25,000–$50,000 per assessment</p>
-                  <a
-                    href="https://calendly.com/tvameva"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary w-full text-center"
-                  >
-                    Book a Time
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </section>

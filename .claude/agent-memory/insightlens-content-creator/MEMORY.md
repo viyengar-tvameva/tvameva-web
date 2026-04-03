@@ -1,0 +1,3 @@
+- [InsightLens Content Enrichment — Initial Build](project_insightlens_enrichment.md) — Full structure of what was built: 6 value drivers, 2 proof points, tech stack, pod model, advisory, component changes
+- [InsightLens Buyer Personas](reference_insightlens_personas.md) — How to frame copy for CDO, CFO, COO, CRO — tone calibration and language by persona
+- [Approved InsightLens Proof Points](reference_approved_proofpoints.md) — Anonymized client archetypes and approved outcome claims, guardrail-verified

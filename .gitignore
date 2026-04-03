@@ -34,3 +34,5 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+test-results/
+.claude/worktrees/

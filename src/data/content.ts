@@ -9,35 +9,35 @@ export interface Differentiator {
 
 export const differentiators: Differentiator[] = [
   {
-    id: 'pods',
+    id: 'intelligence',
     priority: 1,
-    title: 'AI-enabled pods',
-    whatWeSay: 'Dedicated teams of 5–7 specialists augmented by AI code generation, automated QA, and intelligent agents.',
-    whatBuyerHears: 'I get a focused team, not a body shop. AI does the volume work; humans govern quality.',
-    icon: 'Users',
+    title: 'Intelligence layer — our moat',
+    whatWeSay: 'We add our agentic intelligence on top of the enterprise platforms you already run — the differentiated capability that creates outcomes your current stack can\'t.',
+    whatBuyerHears: 'They don\'t replace my platforms. They make them dramatically more valuable.',
+    icon: 'Layers',
   },
   {
-    id: 'pricing',
+    id: 'focus',
     priority: 2,
-    title: 'Outcome-based pricing',
-    whatWeSay: 'You pay for resolution rates, conversion uplift, pipeline SLA—not for hours or headcount.',
-    whatBuyerHears: 'My budget is tied to results. If they don\'t deliver, they don\'t get paid.',
+    title: 'Depth over breadth — by design',
+    whatWeSay: 'Three solutions. Decision intelligence. Digital experience. Revenue orchestration. We chose where to go impossibly deep — and had the discipline to say no to everything else.',
+    whatBuyerHears: 'They don\'t chase every trend. They picked their battles and mastered them.',
     icon: 'Target',
   },
   {
-    id: 'depth',
+    id: 'execution',
     priority: 3,
-    title: 'Partner-anchored depth',
-    whatWeSay: 'Each solution area is built on a specific platform ecosystem—Acquia, GCP, Salesforce, Algolia, Threekit.',
-    whatBuyerHears: 'They aren\'t generalists. They go deep on the stack I already run.',
-    icon: 'Layers',
+    title: 'Outcome-based, AI-led execution',
+    whatWeSay: 'AI agents do the work. Humans govern quality. Your budget is tied to results — decision velocity, conversion, pipeline capacity — not hours or headcount.',
+    whatBuyerHears: 'AI does the work. Their revenue depends on my results. Fundamentally different economics.',
+    icon: 'Users',
   },
   {
     id: 'ip',
     priority: 4,
-    title: 'Reusable accelerator IP',
-    whatWeSay: 'Pre-built connectors and plug-ins eliminate weeks of custom integration. Build once, deploy repeatedly.',
-    whatBuyerHears: 'They have ready-made integrations. This isn\'t a greenfield build—it\'s faster and cheaper.',
+    title: 'Reusable assets and accelerators',
+    whatWeSay: 'Pre-built connectors, agentic pipeline templates, test suites, and institutional memory that eliminates weeks of build — and gets smarter with every engagement.',
+    whatBuyerHears: 'They\'ve done this before. The system learns. Every deployment is faster than the last.',
     icon: 'Zap',
   },
 ];
@@ -51,28 +51,28 @@ export interface ProofPoint {
 
 export const proofPoints: ProofPoint[] = [
   {
-    id: 'cost-reduction',
-    stat: '67%',
-    label: 'Cost reduction',
-    context: 'On a 47-FTE enterprise engagement, reduced to a 16-specialist pod at the same SLA.',
-  },
-  {
-    id: 'ai-resolution',
-    stat: '85–90%',
-    label: 'AI self-resolution rate',
-    context: 'Target resolution rate on enterprise app support engagements.',
-  },
-  {
     id: 'time-saved',
     stat: '6–8 weeks',
     label: 'Eliminated per deployment',
-    context: 'With pre-built connector IP replacing custom integration builds.',
+    context: 'With pre-built connector IP replacing custom integration builds on enterprise DXP programs.',
   },
   {
-    id: 'qa-reduction',
-    stat: '40–60%',
-    label: 'QA cost reduction',
-    context: 'Through AI-generated test suites replacing manual QA scripting.',
+    id: 'proposal-speed',
+    stat: '5 hours',
+    label: 'Full proposal delivery',
+    context: 'What previously took 1 week and 5–6 senior resources — with PropelEdge AI agents.',
+  },
+  {
+    id: 'cost-reduction',
+    stat: '60–70%',
+    label: 'Lower delivery cost',
+    context: 'AI Pod model vs. traditional SI delivery on equivalent-scope enterprise programs.',
+  },
+  {
+    id: 'pipeline-multiplier',
+    stat: '3x',
+    label: 'More opportunities pursued',
+    context: 'With the same team size — AI agents handle the volume, humans govern quality.',
   },
 ];
 
@@ -89,21 +89,6 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: 'fortune-500-isv',
-    title: 'Fortune 500 ISV — Enterprise App Support Transformation',
-    vertical: 'ISV / Hi-Tech',
-    companySize: 'Fortune 500',
-    challenge: 'A 47-person support operation running Salesforce, Oracle, and Workday with rising costs and stagnant resolution rates.',
-    result: 'Deployed AI agents with a 16-specialist pod, achieving the same SLA at 67% lower cost.',
-    metrics: [
-      { label: 'FTE reduction', value: '47 → 16' },
-      { label: 'Cost reduction', value: '67%' },
-      { label: 'Annual savings', value: '$4M' },
-      { label: 'SLA maintained', value: '100%' },
-    ],
-    solutionAreas: ['resolveiq'],
-  },
-  {
     id: 'enterprise-dxp',
     title: 'Enterprise Digital Platform — DXP Modernization',
     vertical: 'Hi-Tech',
@@ -115,7 +100,7 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Connector deployment', value: 'Production-ready' },
       { label: 'Margin improvement', value: 'Without scope change' },
     ],
-    solutionAreas: ['engageos', 'searchcore'],
+    solutionAreas: ['engageos'],
   },
 ];
 
@@ -124,43 +109,105 @@ export interface PodRole {
   responsibility: string;
   aiAugmentation: string;
   icon: string;
+  type: 'agent' | 'human';
 }
 
 export const podRoles: PodRole[] = [
+  // AI Agents — the primary workforce
   {
-    title: 'Product Manager / Owner',
-    responsibility: 'Solution roadmap, client outcomes, backlog prioritization',
-    aiAugmentation: 'AI-assisted sprint planning, release forecasting, risk flagging',
+    title: 'Product Strategy Agent',
+    responsibility: 'Backlog prioritization, sprint planning, release forecasting, risk detection, dependency mapping',
+    aiAugmentation: 'Continuously analyzes client outcomes, market signals, and delivery velocity to optimize the roadmap',
     icon: 'Compass',
+    type: 'agent',
   },
   {
-    title: 'Finance Analyst',
-    responsibility: 'Outcome-based pricing, value realization tracking, margin management',
-    aiAugmentation: 'AI-generated cost models, ROI dashboards, benchmark comparisons',
-    icon: 'DollarSign',
-  },
-  {
-    title: 'Technical Program Manager',
-    responsibility: 'Delivery governance, milestones, escalation management',
-    aiAugmentation: 'AI project status synthesis, automated reporting, dependency mapping',
-    icon: 'ClipboardList',
-  },
-  {
-    title: 'Solution Architect',
-    responsibility: 'Platform architecture, integration design, technical oversight',
-    aiAugmentation: 'Claude Code for design validation, AI-assisted architecture review',
+    title: 'Solution Architecture Agent',
+    responsibility: 'Platform design, integration architecture, design validation, technical documentation',
+    aiAugmentation: 'Evaluates architecture decisions against patterns, generates integration specs, validates designs before human review',
     icon: 'Network',
+    type: 'agent',
   },
   {
-    title: 'Engineers (1–2)',
-    responsibility: 'Review and validate AI-generated outputs; own complex integrations',
-    aiAugmentation: 'Claude Code + Automated QA as the primary development layer',
+    title: 'Engineering Agent',
+    responsibility: 'Code generation, implementation, automated testing, CI/CD pipeline management, deployment',
+    aiAugmentation: 'Writes production code, generates test suites, handles migrations, manages build pipelines — the primary development layer',
     icon: 'Code2',
+    type: 'agent',
   },
+  {
+    title: 'QA & Validation Agent',
+    responsibility: 'Automated regression testing, performance testing, accessibility audits, security scanning',
+    aiAugmentation: 'Runs continuous validation against every change — smoke tests, Web Vitals, Lighthouse scores, cross-browser compatibility',
+    icon: 'Shield',
+    type: 'agent',
+  },
+  {
+    title: 'Program Management Agent',
+    responsibility: 'Delivery tracking, status synthesis, milestone monitoring, escalation detection, automated reporting',
+    aiAugmentation: 'Generates real-time delivery dashboards, flags risks before they become blockers, produces stakeholder updates',
+    icon: 'ClipboardList',
+    type: 'agent',
+  },
+  {
+    title: 'Content & Publishing Agent',
+    responsibility: 'Content creation, CMS publishing, brand consistency enforcement, guardrail compliance',
+    aiAugmentation: 'Drafts solution content, publishes to Drupal CMS, validates against brand voice and content guardrails',
+    icon: 'FileText',
+    type: 'agent',
+  },
+  {
+    title: 'Security & Compliance Agent',
+    responsibility: 'Continuous vulnerability scanning, dependency auditing, OWASP compliance, secrets detection, supply chain security, penetration testing automation',
+    aiAugmentation: 'Monitors every code change for security vulnerabilities, audits dependencies against CVE databases, enforces security policies, scans for exposed secrets, and validates compliance posture — continuously, not quarterly',
+    icon: 'ShieldCheck',
+    type: 'agent',
+  },
+  // Human governance layer
   {
     title: 'Customer Success Lead',
-    responsibility: 'Adoption, expansion, relationship health, renewal readiness',
-    aiAugmentation: 'AI-powered usage analytics, churn signal detection, expansion triggers',
+    responsibility: 'Client relationship, outcome alignment, strategic guidance, escalation resolution, expansion planning',
+    aiAugmentation: 'Governs agent outputs, approves critical decisions, owns client communication and trust',
     icon: 'HeartHandshake',
+    type: 'human',
+  },
+  {
+    title: 'Customer Success Engineer',
+    responsibility: 'Architecture sign-off, complex integration decisions, production deployment approval, quality governance',
+    aiAugmentation: 'Reviews agent-generated code and architecture for edge cases, security, and strategic alignment',
+    icon: 'Eye',
+    type: 'human',
+  },
+];
+
+// --- Testimonials ---
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  title: string;
+  photo?: string;
+  quote: string;
+  highlights: string[];
+  solutionArea: string;
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 'avinash-thakur-advisory',
+    name: 'Avinash Thakur',
+    title: 'Enterprise AI Data & Cloud Sales Leader, AWS & GCP Certified AI/ML Expert',
+    quote: 'I\'ve had the pleasure of working closely with Varada at LTTS, where he has been instrumental in driving high-impact digital transformation solutions for our strategic customers. He possesses a rare combination of deep technical knowledge, nuanced expertise in enterprise transformations, and sharp business acumen. He doesn\'t just know the how — he knows the why behind every move. Whether advising on strategic do\'s and don\'ts or architecting a complex solution, he consistently adds value that wins both trust and business.',
+    highlights: [],
+    solutionArea: 'engageos',
+  },
+  {
+    id: 'venugopal-arcot-propeledge',
+    name: 'Venugopal Arcot',
+    title: 'Board Member, Strategic Advisor, Keynote Speaker',
+    photo: '/testimonials/ve-headshot.jpg',
+    quote: 'We used to throw 10–12 people at every major proposal — senior consultants pulled off billable work for weeks. With Tvameva\'s agentic AI approach, a small team with the AI pipeline produces a better proposal in a fraction of the time. We went from scrambling on every RFP to never missing a deadline — not once. 35–40% less prep effort, higher win rates, and our senior people are back on client work where they belong. We\'re scaling it across all our practice areas now.',
+    highlights: [],
+    solutionArea: 'propeledge',
   },
 ];
