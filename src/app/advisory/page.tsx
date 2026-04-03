@@ -65,10 +65,6 @@ export default function AdvisoryPage() {
                   a prioritized roadmap, and a business case your leadership team can act on — in
                   2–4 weeks, not 2–4 months.
                 </p>
-                <Link href="/advisory/ai-maturity" className="btn-primary mt-8 inline-flex text-base px-8 py-4">
-                  Take the AI Maturity Assessment
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
               </div>
               <div className="hidden lg:block">
                 <AdvisoryBuildingBlocks />
@@ -150,18 +146,6 @@ export default function AdvisoryPage() {
         </section>
 
         {/* Contact CTA */}
-        {/* Advisory testimonial */}
-        {testimonials.filter((t) => t.solutionArea === 'advisory').length > 0 && (
-          <section className="section-padding bg-brand-navy-light/30">
-            <div className="section-container max-w-3xl">
-              {testimonials
-                .filter((t) => t.solutionArea === 'advisory')
-                .map((t) => (
-                  <TestimonialCard key={t.id} testimonial={t} />
-                ))}
-            </div>
-          </section>
-        )}
 
         <section className="section-padding">
           <div className="section-container text-center">
