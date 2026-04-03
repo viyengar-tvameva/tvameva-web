@@ -141,7 +141,10 @@ export default async function CustomerSuccessPage() {
         {/* Solution-by-solution success stories */}
         {solutionSuccessStories.map((story, idx) => {
           const colors = colorMap[story.color] || colorMap.teal;
-          const storyTestimonials = testimonials.filter((t) => t.solutionArea === story.id);
+          // Avinash (advisory) appears under first EngageOS story; Venu under PropelEdge
+          const storyTestimonials = story.id === 'engageos' && idx === 0
+            ? testimonials.filter((t) => t.solutionArea === 'advisory')
+            : testimonials.filter((t) => t.solutionArea === story.id);
 
           return (
             <section

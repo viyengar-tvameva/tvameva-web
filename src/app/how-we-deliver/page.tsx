@@ -423,10 +423,9 @@ export default async function HowWeDeliverPage() {
                   and it serves as a live proof point of the approach.
                 </p>
                 <p>
-                  A single human (the founder) directed the work. AI agents handled everything else:
-                  solution content creation across 3 solution areas, React/Next.js frontend development,
-                  Drupal CMS integration via JSON:API, Playwright test suites, Docker infrastructure,
-                  GKE deployment, Cloud Run configuration, and content publishing.
+                  The founders directed the work. AI agents handled everything else:
+                  solution content creation across 3 solution areas, front-end design and engineering,
+                  headless CMS integration, test automation, and cloud deployment.
                 </p>
               </div>
 
@@ -518,10 +517,10 @@ export default async function HowWeDeliverPage() {
               We&apos;ll walk you through a live engagement — how agents handle the work, how humans
               govern quality, and what the economics look like for your use case.
             </p>
-            <Link href="/advisory" className="btn-primary text-base px-8 py-4 inline-flex items-center">
-              Schedule a Pod Demo
+            <a href="https://calendly.com/varada-tvameva/30min" target="_blank" rel="noopener noreferrer" className="btn-primary text-base px-8 py-4 inline-flex items-center">
+              Book a 30-Minute Demo
               <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </section>
       </main>
