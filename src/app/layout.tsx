@@ -9,15 +9,15 @@ export const metadata: Metadata = {
     template: '%s | Tvameva',
   },
   description:
-    'AI-native solution areas. Dedicated pods of 5–7 specialists. Outcome-based pricing. We go deep on the platforms you already use—Drupal, Google Cloud, Salesforce, Algolia, Threekit.',
+    'AI-native solutions provider. EngageOS, InsightLens, and PropelEdge — delivered by dedicated AI pods, priced on measurable outcomes.',
   keywords: [
     'AI solutions',
     'enterprise AI',
-    'AI-enabled pods',
+    'AI pods',
     'outcome-based pricing',
-    'Drupal modernization',
-    'Salesforce Agentforce',
-    'Google Cloud analytics',
+    'digital experience',
+    'decision intelligence',
+    'revenue orchestration',
     'Algolia search',
     'Threekit configurator',
     'digital transformation',
@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     siteName: 'Tvameva',
     title: 'Tvameva — AI-Native Solutions for Enterprise Platforms',
     description:
-      'AI-native solution areas. Dedicated pods. Outcome-based pricing. Results, not timesheets.',
+      'AI-native solutions provider. EngageOS, InsightLens, and PropelEdge — delivered by dedicated AI pods, priced on measurable outcomes.',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Tvameva' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Tvameva — AI-Native Solutions for Enterprise Platforms',
-    description: 'AI-native solution areas. Dedicated pods. Outcome-based pricing.',
+    description: 'AI-native. Outcome-anchored. Three solutions for tomorrow\'s enterprise.',
   },
   robots: {
     index: true,
