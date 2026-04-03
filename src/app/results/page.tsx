@@ -42,7 +42,7 @@ const solutionSuccessStories = [
     color: 'teal',
     client: 'tvameva.ai',
     challenge: 'Build and launch a complete AI-powered lead generation website in 2 days — 19 pages, CMS integration, automated testing, security scanning, visual components, and production deployment — without an agency and without a traditional dev team.',
-    solution: 'The founders directed the vision. AI agents wrote the code, created the content, built the tests, published to the CMS, and deployed to production. The same Human-Governed AI Pod model we deliver to clients — applied to ourselves first.',
+    solution: 'The founders directed the vision. AI agents wrote the code, created the content, built the tests, published to the CMS, and deployed to production. The same AI Pod model we deliver to clients — applied to ourselves first.',
     metrics: [
       { value: '19', label: 'Routes Live', context: 'Solution pages, customer success, advisory, legal — all CMS-driven' },
       { value: '35+', label: 'Automated Tests', context: 'Desktop, mobile, performance, accessibility, security — growing with every release' },

@@ -27,9 +27,9 @@ export const differentiators: Differentiator[] = [
   {
     id: 'execution',
     priority: 3,
-    title: 'Outcome-based, AI-led execution',
-    whatWeSay: 'AI agents do the work. Humans govern quality. Your budget is tied to results — decision velocity, conversion, pipeline capacity — not hours or headcount.',
-    whatBuyerHears: 'AI does the work. Their revenue depends on my results. Fundamentally different economics.',
+    title: 'Dedicated pods — more AI, fewer humans',
+    whatWeSay: '7–8 AI agents handle engineering, testing, security, content, and deployment. 2–3 human wizards lead, govern quality, and own client outcomes. The humans are in charge. The AI is the workforce.',
+    whatBuyerHears: 'A small team of exceptional humans leading a workforce of AI agents. Better outcomes at a fraction of the cost.',
     icon: 'Users',
   },
   {

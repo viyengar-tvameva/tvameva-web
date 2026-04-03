@@ -19,8 +19,8 @@ export function DifferentiatorsSection({ data }: Props = {}) {
             How we're different
           </h2>
           <p className="mt-4 text-brand-gray-300">
-            AI agents do the work. Humans govern the outcome. A delivery model built around
-            intelligence, outcome accountability, and reusable IP.
+            Dedicated pods with more AI and fewer humans. Led by wizards. Powered by agents.
+            Priced on your outcomes.
           </p>
         </div>
 

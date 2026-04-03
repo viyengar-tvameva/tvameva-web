@@ -43,10 +43,11 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-gradient-brand" />
           <div className="relative section-container">
             <h1 className="text-hero-md font-display font-bold text-white max-w-2xl">
-              Let&apos;s talk about what AI can do for your platforms.
+              Let&apos;s start a conversation.
             </h1>
             <p className="mt-4 text-lg text-brand-gray-300 max-w-xl">
-              Before we propose a solution, we need to understand where you are today.
+              Whether you&apos;re exploring solutions, requesting an assessment,
+              or interested in joining our team — we&apos;d love to hear from you.
             </p>
           </div>
         </section>

@@ -8,7 +8,7 @@ import Link from 'next/link';
 import drupalClient from '@/utils/drupal-client';
 
 export const metadata: Metadata = {
-  title: 'How We Deliver — Human-Governed AI Pods',
+  title: 'How We Deliver — AI Pods',
   description: 'AI agents do the work. Humans govern quality. A delivery model where specialized agents handle engineering, architecture, testing, and program management — with a small human team guiding outcomes.',
 };
 
@@ -35,14 +35,14 @@ export default async function HowWeDeliverPage() {
                   The Delivery Model
                 </p>
                 <h1 className="text-hero-md lg:text-hero-lg font-display font-bold text-white">
-                  AI agents do the work.{' '}
-                  <span className="gradient-text">Humans govern the outcome.</span>
+                  Dedicated pods.{' '}
+                  <span className="gradient-text">More AI. Fewer humans. Better outcomes.</span>
                 </h1>
                 <p className="mt-6 text-lg text-brand-gray-300 leading-relaxed">
-                  Most service providers bolt AI onto human teams and call it transformation.
-                  We inverted the model. Specialized AI agents handle engineering, architecture,
-                  testing, security, and program management. A small human team of 2–3 experts governs
-                  quality, owns client relationships, and makes the decisions that matter.
+                  Most service providers staff 8–12 humans and sprinkle in AI tools. We staff 7–8 AI
+                  agents and 2–3 human wizards who lead, govern, and own the outcome. The humans are
+                  in charge. The AI agents are the workforce. The result is a pod that delivers at a
+                  speed and cost structure traditional teams can&apos;t match.
                 </p>
                 <p className="mt-4 text-base text-brand-amber/80 font-display">
                   The result: 60–70% lower cost, 3–5x faster delivery, and quality that improves
@@ -106,16 +106,16 @@ export default async function HowWeDeliverPage() {
               {/* Ours */}
               <div className="card border-brand-amber/30 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-amber to-brand-teal" />
-                <p className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-4">Tvameva: Human-Governed AI Pod</p>
+                <p className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-4">Tvameva: Human-Led Pod with AI Workforce</p>
                 <p className="text-[11px] text-brand-amber/60 mb-4 italic">Same scope, same platform complexity — fundamentally different economics</p>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-3 text-sm text-white">
                     <Bot className="w-4 h-4 shrink-0 text-brand-amber" />
-                    <span>7 AI agents as the primary workforce</span>
+                    <span>7–8 AI agents — the workforce</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-white">
                     <Users className="w-4 h-4 shrink-0 text-brand-teal" />
-                    <span>2–3 human experts governing quality and outcomes</span>
+                    <span>2–3 human wizards leading and governing</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-white">
                     <DollarSign className="w-4 h-4 shrink-0 text-brand-teal" />
@@ -192,34 +192,6 @@ export default async function HowWeDeliverPage() {
               </div>
             </div>
 
-            {/* Human Layer */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-brand-teal/10">
-                  <Shield className="w-5 h-5 text-brand-teal" />
-                </div>
-                <div>
-                  <h3 className="font-display font-semibold text-white">Human Governance Layer</h3>
-                  <p className="text-xs text-brand-gray-400">2–3 experts who govern quality and own outcomes</p>
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-4">
-                {humanRoles.map((role) => (
-                  <div key={role.title} className="card border-brand-teal/20 hover:border-brand-teal/40 transition-colors">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Users className="w-4 h-4 text-brand-teal" />
-                      <h4 className="text-sm font-display font-semibold text-white">{role.title}</h4>
-                    </div>
-                    <p className="text-xs text-brand-gray-300 mb-3 leading-relaxed">{role.responsibility}</p>
-                    <div className="px-3 py-2 bg-brand-navy-surface rounded-md border border-brand-border/50">
-                      <p className="text-[11px] font-mono text-brand-amber/80 leading-relaxed">
-                        {role.aiAugmentation}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 

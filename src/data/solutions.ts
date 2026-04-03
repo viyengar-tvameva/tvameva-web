@@ -264,8 +264,8 @@ export const solutionAreas: SolutionArea[] = [
     ],
 
     podModel: {
-      headline: 'AI agents build your platform. Humans govern quality and outcomes.',
-      body: 'Every EngageOS engagement is delivered by a Human-Governed AI Pod. Specialized AI agents handle the volume work — code generation, content migration, search configuration, automated testing, and deployment. A small human team of 2–3 experts governs architecture decisions, client relationships, and production quality.\n\nThis isn\'t AI-assisted development. The agents are the primary workforce. Your human team focuses on the decisions that matter — platform architecture, integration strategy, and client outcomes.',
+      headline: 'A dedicated AI Pod builds your platform. Human wizards augment with quality and oversight.',
+      body: 'Every EngageOS engagement is delivered by a AI Pod. Specialized AI agents handle the volume work — code generation, content migration, search configuration, automated testing, and deployment. A small human team of 2–3 experts governs architecture decisions, client relationships, and production quality.\n\nThis isn\'t AI-assisted development. The agents are the primary workforce. Your human team focuses on the decisions that matter — platform architecture, integration strategy, and client outcomes.',
       roles: [
         'Solution Architecture Agent',
         'Frontend Engineering Agent',
@@ -581,8 +581,8 @@ export const solutionAreas: SolutionArea[] = [
     ],
 
     podModel: {
-      headline: 'AI agents build your analytics platform. Humans govern accuracy and adoption.',
-      body: 'Every InsightLens engagement is delivered by a Human-Governed AI Pod. Specialized AI agents handle pipeline engineering, model development, dashboard creation, and data quality validation. A small human team governs architecture decisions, model accuracy, and executive adoption.\n\nThe agents own the full analytics lifecycle — from pipeline orchestration through model deployment to dashboard monitoring. Humans focus on what matters: ensuring the right business questions are being answered and the right decisions are being driven.',
+      headline: 'A dedicated AI Pod builds your analytics platform. Human wizards augment with accuracy and adoption.',
+      body: 'Every InsightLens engagement is delivered by a AI Pod. Specialized AI agents handle pipeline engineering, model development, dashboard creation, and data quality validation. 2–3 human wizards augment the pod with architecture decisions, model accuracy, and executive adoption.\n\nThe agents own the full analytics lifecycle — from pipeline orchestration through model deployment to dashboard monitoring. Humans focus on what matters: ensuring the right business questions are being answered and the right decisions are being driven.',
       roles: [
         'Data Pipeline Agent',
         'ML Engineering Agent',
