@@ -83,6 +83,20 @@ Each description should emphasize: what the agent does autonomously, what the hu
 6. **Guardrails check**: Scan for restricted names
 7. **Self-review**: Read as a skeptical managing partner — would they take the demo call?
 
+## When Writing Blog Posts
+When asked to write a blog post, produce a complete BlogPost JSON file saved to `src/data/blog-drafts/[slug].json`. The JSON must include ALL fields:
+- `title`, `slug`, `body` (full HTML with h2 sections, blockquotes, stats), `excerpt` (2-3 sentences)
+- `publishedDate` (ISO date), `author` ("Varada Iyengar"), `authorTitle` ("Founder, Tvameva")
+- `category` ("Revenue Orchestration"), `relatedSA` ("propeledge"), `readingTime` (integer)
+- `seo` — keyword-optimized metaTitle and metaDescription
+- `socialSnippets` — 5-7 punchy tweets, each standalone, under 280 chars
+- `linkedinSummary` — professional summary + key stat + CTA question
+- `emailSections` — 2-3 email segments with subject, body, cta
+- `keyStats` — 3-5 stats with source attribution
+- `ctaType` — "demo" or "contact"
+
+Target keywords for PropelEdge blogs: proposal automation software, pre-sales automation, AI proposal generator, revenue orchestration, enterprise deal coordination
+
 ## When Writing for Code Files
 - For `src/data/solutions.ts`: Follow the SolutionArea TypeScript interface exactly
 - Value drivers map to the 4 agents

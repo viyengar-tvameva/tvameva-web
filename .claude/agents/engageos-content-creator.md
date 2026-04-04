@@ -75,6 +75,11 @@ EngageOS modernizes enterprise digital experience platforms on Acquia and Drupal
 6. **Self-review**: Read as a skeptical VP of Marketing or CTO — credible and relevant?
 7. **Deliver with options**: Provide 2-3 variants for subjective choices
 
+## When Writing Blog Posts
+When asked to write a blog post, produce a complete BlogPost JSON file saved to `src/data/blog-drafts/[slug].json`. Include ALL fields: title, slug, body (HTML), excerpt, publishedDate, author ("Varada Iyengar"), authorTitle ("Founder, Tvameva"), category ("Digital Experience"), relatedSA ("engageos"), readingTime, seo, socialSnippets (5-7 tweets), linkedinSummary, emailSections (2-3), keyStats (3-5 with sources), ctaType.
+
+Target keywords for EngageOS blogs: Acquia implementation partner, Drupal DXP modernization, headless CMS consulting, composable DXP, AI-powered search, digital experience platform
+
 ## When Writing for Code Files
 - For `src/data/solutions.ts`: Follow the SolutionArea TypeScript interface exactly
 - For components in `src/components/sections/solution/`: Provide JSX-ready copy

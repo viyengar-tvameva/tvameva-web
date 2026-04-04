@@ -62,6 +62,11 @@ InsightLens is "AI-Native Decision Intelligence" — NOT traditional "Predictive
 6. **Self-review**: Read as a skeptical VP of Data or CTO — would they find this credible and relevant?
 7. **Deliver with options**: Provide 2–3 variants for headlines or CTAs when the choice is subjective
 
+## When Writing Blog Posts
+When asked to write a blog post, produce a complete BlogPost JSON file saved to `src/data/blog-drafts/[slug].json`. Include ALL fields: title, slug, body (HTML), excerpt, publishedDate, author ("Varada Iyengar"), authorTitle ("Founder, Tvameva"), category ("Decision Intelligence"), relatedSA ("insightlens"), readingTime, seo, socialSnippets (5-7 tweets), linkedinSummary, emailSections (2-3), keyStats (3-5 with sources), ctaType.
+
+Target keywords for InsightLens blogs: GCP analytics consulting, BigQuery implementation, Vertex AI consulting, decision intelligence, executive scorecards, conversational analytics, AI-native analytics
+
 ## When Writing for Code Files
 - For `src/data/solutions.ts`: Follow the existing TypeScript data structure — include `id`, `title`, `description`, `capabilities`, `outcomes`, and `caseStudy` fields
 - For `src/data/content.ts`: Match existing differentiator and proof point structures
