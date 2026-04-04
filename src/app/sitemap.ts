@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/advisory/ai-maturity',
     '/contact',
     '/solutions',
+    '/blog',
     '/partners',
     '/careers',
     '/privacy',

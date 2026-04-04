@@ -19,6 +19,13 @@ const navItems = [
   { label: 'How We Deliver', href: '/how-we-deliver' },
   { label: 'Customer Success', href: '/results' },
   { label: 'Advisory', href: '/advisory' },
+  {
+    label: 'Resources',
+    href: '/blog',
+    children: [
+      { label: 'Blog', href: '/blog', tag: '' },
+    ],
+  },
   { label: 'About', href: '/about' },
 ];
 

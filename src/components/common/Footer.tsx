@@ -13,6 +13,7 @@ const footerLinks = {
     { label: 'Careers', href: '/careers' },
   ],
   resources: [
+    { label: 'Blog', href: '/blog' },
     { label: 'Advisory Assessments', href: '/advisory' },
     { label: 'AI Maturity Assessment', href: '/advisory/ai-maturity' },
   ],

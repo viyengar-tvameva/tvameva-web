@@ -10,7 +10,9 @@ export function OrganizationJsonLd() {
     name: 'Tvameva',
     url: 'https://tvameva.ai',
     logo: 'https://tvameva.ai/og-image.png',
-    description: 'AI-native solutions provider. EngageOS, InsightLens, and PropelEdge — delivered by dedicated AI pods, priced on measurable outcomes.',
+    description: 'AI-native solutions provider delivering EngageOS, InsightLens, and PropelEdge through dedicated AI pods with outcome-based pricing.',
+    foundingDate: '2024',
+    serviceType: ['AI Consulting', 'Enterprise Software Implementation', 'Digital Experience Modernization', 'Analytics & Decision Intelligence', 'Revenue Orchestration', 'Proposal Automation'],
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',

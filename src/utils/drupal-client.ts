@@ -8,6 +8,28 @@
 import type { SolutionArea, ValueDriver, ProofPointCase, TechStackLayer, ExpansionConnection } from '@/data/solutions';
 import type { Differentiator, ProofPoint, CaseStudy, PodRole } from '@/data/content';
 
+// --- Blog Post Interface ---
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  body: string;
+  excerpt: string;
+  featuredImage?: string;
+  publishedDate: string;
+  author: string;
+  authorTitle: string;
+  category: string;
+  relatedSA?: string;
+  readingTime: number;
+  seo?: { metaTitle: string; metaDescription: string };
+  socialSnippets?: string[];
+  linkedinSummary?: string;
+  keyStats?: { stat: string; context: string }[];
+  emailSections?: { subject: string; body: string; cta: string }[];
+  ctaType?: 'demo' | 'contact';
+}
+
 const DRUPAL_BASE_URL = process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || 'http://localhost:8080';
 const USE_CMS = process.env.NEXT_PUBLIC_USE_CMS === 'true';
 
@@ -322,6 +344,62 @@ return data.map(mapDrupalToSolutionArea);
       console.error('Failed to fetch pod roles from CMS:', error);
       return null;
     }
+  }
+
+  async getBlogPosts(): Promise<BlogPost[] | null> {
+    if (!USE_CMS) return null;
+    try {
+      const response = await this.fetch<DrupalResource>('node/blog_post', {
+        'sort': '-field_published_date',
+      });
+      const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
+      return data.map((r) => this.mapDrupalToBlogPost(r));
+    } catch (error) {
+      console.error('Failed to fetch blog posts from CMS:', error);
+      return null;
+    }
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+    if (!USE_CMS) return null;
+    try {
+      const response = await this.fetch<DrupalResource>('node/blog_post', {
+        'filter[field_slug]': slug,
+      });
+      const data = (Array.isArray(response.data) ? response.data : [response.data]) as DrupalResource[];
+      if (data.length === 0) return null;
+      return this.mapDrupalToBlogPost(data[0]);
+    } catch (error) {
+      console.error(`Failed to fetch blog post ${slug} from CMS:`, error);
+      return null;
+    }
+  }
+
+  private mapDrupalToBlogPost(r: DrupalResource): BlogPost {
+    const a = r.attributes;
+    return {
+      id: a.field_slug || '',
+      title: a.title || '',
+      slug: a.field_slug || '',
+      body: textValue(a.field_body),
+      excerpt: textValue(a.field_excerpt),
+      featuredImage: a.field_featured_image || undefined,
+      publishedDate: a.field_published_date || '',
+      author: a.field_author || '',
+      authorTitle: a.field_author_title || '',
+      category: a.field_category || '',
+      relatedSA: a.field_related_sa || undefined,
+      readingTime: a.field_reading_time || 5,
+      seo: a.field_meta_title ? {
+        metaTitle: a.field_meta_title,
+        metaDescription: textValue(a.field_meta_description),
+      } : undefined,
+      socialSnippets: jsonFieldValue<string[]>(a.field_social_snippets, []),
+      linkedinSummary: textValue(a.field_linkedin_summary) || undefined,
+      keyStats: jsonFieldValue<{ stat: string; context: string }[]>(a.field_key_stats, []),
+      emailSections: jsonFieldValue<{ subject: string; body: string; cta: string }[]>(a.field_email_sections, []),
+      ctaType: (a.field_cta_type || 'demo') as 'demo' | 'contact',
+    };
   }
 
   async submitContactForm(data: {
