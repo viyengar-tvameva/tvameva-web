@@ -184,6 +184,13 @@ kubectl -n drupal exec $POD -- bash -c 'cd /opt/drupal/web && php /tmp/seed-cont
 BASE_URL=https://tvameva.ai npx playwright test tests/smoke.spec.ts
 ```
 
+## Deployment Rules — NON-NEGOTIABLE
+- **NEVER deploy to production without explicit user approval** — "let's deploy" or "deploy it" must come from the user
+- **ALWAYS run tests before deploying** — `npx playwright test` must pass
+- **ALWAYS verify locally before proposing deployment** — visual review, not just TypeScript check
+- **The production site is LIVE** — any broken deploy impacts real visitors
+- **Sequence**: Code change → TypeScript check → Build → Test → User reviews locally → User approves → Deploy
+
 ## Common Mistakes to NEVER Repeat
 - Don't hardcode EngageOS-specific content in shared components (architecture diagrams, etc.)
 - Don't use industry-specific language in generic copy (no "engineers", "semiconductor" in value drivers)

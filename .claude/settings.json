@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://tvameva.ai)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://tvameva.ai)",
+      "Bash(rm -rf .next)",
+      "Bash(npm run:*)",
+      "Bash(docker build:*)",
+      "Bash(docker push:*)",
+      "Bash(gcloud run:*)"
     ]
   }
 }

@@ -31,17 +31,17 @@ const navItems = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
-  const openDropdown = useCallback(() => {
+  const handleOpenDropdown = useCallback((label: string) => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current);
-    setDropdownOpen(true);
+    setOpenDropdown(label);
   }, []);
 
-  const closeDropdown = useCallback(() => {
-    closeTimeout.current = setTimeout(() => setDropdownOpen(false), 150);
+  const handleCloseDropdown = useCallback(() => {
+    closeTimeout.current = setTimeout(() => setOpenDropdown(null), 150);
   }, []);
 
   const isActive = (href: string) => {
@@ -67,18 +67,18 @@ export function Navbar() {
                 <div
                   key={item.label}
                   className="relative"
-                  onMouseEnter={openDropdown}
-                  onMouseLeave={closeDropdown}
+                  onMouseEnter={() => handleOpenDropdown(item.label)}
+                  onMouseLeave={handleCloseDropdown}
                 >
                   <button className={isActive(item.href) ? 'nav-link-active flex items-center gap-1' : 'nav-link flex items-center gap-1'}>
                     {item.label}
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} />
                   </button>
-                  {dropdownOpen && (
+                  {openDropdown === item.label && (
                     <>
                       {/* Invisible bridge to prevent gap-triggered close */}
                       <div className="absolute top-full left-0 w-72 h-3" />
-                      <div className="absolute top-full left-0 pt-2 w-72" onMouseEnter={openDropdown}>
+                      <div className="absolute top-full left-0 pt-2 w-72" onMouseEnter={() => handleOpenDropdown(item.label)}>
                         <div className="bg-brand-navy-card border border-brand-border rounded-card shadow-2xl shadow-black/40 p-2">
                       {item.children.map((child) => (
                         <Link
